@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_goto_markets"
+        android:title="Markets"
+        android:icon="@drawable/ic_market_list"/>
+    <item
+        android:id="@+id/action_goto_map"
+        android:title="Map"
+        android:icon="@drawable/ic_map"/>
+    <item
+        android:id="@+id/action_goto_shopping_list"
+        android:title="My List"
+        android:icon="@drawable/ic_shopping_list"/>
+    <item
+        android:id="@+id/action_goto_calendar"
+        android:title="Calendar"
+        android:icon="@drawable/ic_calendar"/>
+    <item
+        android:id="@+id/action_goto_settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"/>
+</menu>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cpg12.findingfresh.fragments.MarketDetailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/marketImage"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/hero_image" />
+
+        <TextView
+            android:id="@+id/marketName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Market Name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/marketImage" />
+
+        <TextView
+            android:id="@+id/marketAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/marketName"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Market Address" />
+
+        <TextView
+            android:id="@+id/marketCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/marketAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Market Category" />
+
+        <TextView
+            android:id="@+id/marketPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/marketCategory"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Market Phone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

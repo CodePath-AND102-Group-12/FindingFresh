@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/featuredMarketsRVLayout"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="5dp"
+    android:background="@color/black">
+
+    <!-- Idea here is to have a side scrolling Recycler View for a small number of featured markets -->
+
+    <TextView
+        android:id="@+id/marketName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="FEATURED MARKET NAME" />
+
+    <TextView
+        android:id="@+id/marketAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/marketName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="ADDRESS" />
+
+    <TextView
+        android:id="@+id/marketPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/marketAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="PHONE" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
