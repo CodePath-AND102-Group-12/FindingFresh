@@ -4,27 +4,30 @@
     package="com.cpg12.findingfresh">
 
     <application
-        android:largeHeap="true"
-        android:hardwareAccelerated="false"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_findingfresh"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_findingfresh_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindingFresh"
         tools:targetApi="31">
-        <activity android:name="com.cpg12.findingfresh.activities.MainActivity"/>
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:exported="false" />
+        <activity android:name=".activities.MainActivity" />
         <activity
             android:name=".activities.AddMarketActivity"
             android:exported="false" />
-
         <activity
-            android:name="com.cpg12.findingfresh.activities.LogInActivity"
+            android:name=".activities.LogInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -32,7 +35,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDH1o9KWNZ_Rq5sObnYF-BnFxufbkg34uI" />
-
     </application>
 
 </manifest>

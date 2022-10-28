@@ -25,5 +25,11 @@ class LogInActivity : AppCompatActivity() {
             val intent = Intent(this, AddMarketActivity::class.java)
             this.startActivity(intent)
         }
+
+        val registerBtn = findViewById<Button>(R.id.createAccountBtn)
+        btn.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            this.startActivity(intent)
+        }
     }
 }

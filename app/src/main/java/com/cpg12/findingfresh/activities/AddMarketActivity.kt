@@ -89,6 +89,8 @@ class AddMarketActivity : AppCompatActivity() {
                 if (it.isSuccessful){
                     uploadImage()
                     hideProgressBar()
+                    Toast.makeText(this@AddMarketActivity,"Market Listing Successful",Toast.LENGTH_LONG).show()
+
 
                     /**Go back to main screen**/
                     val intent = Intent(this, MainActivity::class.java)
