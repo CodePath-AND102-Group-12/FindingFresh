@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/featuredMarkets"
+            android:id="@+id/ListYourMarketsEverybody"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Featured Markets"
@@ -31,7 +31,7 @@
             android:scrollbars="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/featuredMarkets"/>
+            app:layout_constraintTop_toBottomOf="@id/ListYourMarketsEverybody"/>
 
 
         <TextView
