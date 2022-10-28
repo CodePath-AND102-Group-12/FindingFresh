@@ -56,6 +56,7 @@ class AddMarketActivity : AppCompatActivity() {
         /** Cancel button intents into main listing**/
         binding.marketCancelBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             this.startActivity(intent)
         }
 
@@ -94,6 +95,7 @@ class AddMarketActivity : AppCompatActivity() {
 
                     /**Go back to main screen**/
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     this.startActivity(intent)
 
                 }else{
