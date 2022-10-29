@@ -30,7 +30,7 @@ import com.google.firebase.ktx.Firebase
 class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
     private lateinit var featuredMarketListingAdapter: FeaturedMarketListingAdapter
     private lateinit var allMarketListingAdapter: MarketListingAdapter
-    private val marketList = arrayListOf<Market>()
+    private var marketList = mutableListOf<Market>()
 
     private val viewModel: FreshViewModel by activityViewModels()
 
@@ -51,8 +51,14 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
             view.findViewById<RecyclerView>(R.id.featuredMarketsRecyclerView)
 
 
-
-        var firestore = FirebaseFirestore.getInstance()
+/**
+ *
+ * Currently working on getting data from Firebase to create a saved list that doesn't
+ * rely on MarketFetcher. The data translates to the market object but will not copy over
+ * to marketList in the iterator below.
+ *
+ * **/
+        val firestore = FirebaseFirestore.getInstance()
         firestore.collection("farms").addSnapshotListener {
                 snapshot, e ->
             if (e != null) {
@@ -63,11 +69,16 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
                 val documents = snapshot.documents
                 documents.forEach {
                     val farm = it.toObject(Market::class.java)
-                    marketList.add(farm!!)
+                    farm
+                    if (farm != null) {
+                        marketList.add(farm)
+                    }
                 }
             }
         }
 
+
+        viewModel.allmarkets.value
 
         marketList.addAll(MarketFetcher.getItems())
         marketList.addAll(MarketFetcher.getItems())

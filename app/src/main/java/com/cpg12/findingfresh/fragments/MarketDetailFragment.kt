@@ -50,14 +50,6 @@ class MarketDetailFragment() : Fragment() {
         marketCategory.text = marketDetail?.category
         marketPhone.text = marketDetail?.phone
 
-        // This should be replaced by whatever the actual image URL is instead of these generic images
-        when (marketDetail?.image) {
-            "produce" -> marketImage.setImageResource(R.drawable.produce)
-            "bakery" -> marketImage.setImageResource(R.drawable.bakery)
-            "fruits" -> marketImage.setImageResource(R.drawable.fruits)
-            "plants" -> marketImage.setImageResource(R.drawable.plants)
-        }
-
         //TODO: set to proper address when Market Object is finalized
         marketAddress.setOnClickListener {
             val gmmIntentUri =

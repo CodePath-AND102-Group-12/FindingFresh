@@ -54,13 +54,6 @@ class MarketListingAdapter(private val marketList: MutableList<Market>,
         holder.marketName.text = market.name
         holder.marketCategory.text = market.category
 
-        // This should be replaced by whatever the actual image URL is instead of these generic images
-        when (market.image) {
-            "produce" -> holder.marketImage.setImageResource(R.drawable.produce)
-            "bakery" -> holder.marketImage.setImageResource(R.drawable.bakery)
-            "fruits" -> holder.marketImage.setImageResource(R.drawable.fruits)
-            "plants" -> holder.marketImage.setImageResource(R.drawable.plants)
-        }
     }
 
     override fun getItemCount(): Int {
