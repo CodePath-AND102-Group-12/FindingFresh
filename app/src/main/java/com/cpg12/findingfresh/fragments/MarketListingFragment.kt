@@ -1,5 +1,6 @@
 package com.cpg12.findingfresh.fragments
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +23,7 @@ import com.cpg12.findingfresh.adapters.MarketListingAdapter
 import com.cpg12.findingfresh.database.MarketFetcher
 import com.cpg12.findingfresh.objects.Market
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -47,6 +49,25 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val featuredMarketListRecyclerView =
             view.findViewById<RecyclerView>(R.id.featuredMarketsRecyclerView)
+
+
+
+        var firestore = FirebaseFirestore.getInstance()
+        firestore.collection("farms").addSnapshotListener {
+                snapshot, e ->
+            if (e != null) {
+                Log.w(ContentValues.TAG, "Listen Failed", e)
+                return@addSnapshotListener
+            }
+            if (snapshot != null) {
+                val documents = snapshot.documents
+                documents.forEach {
+                    val farm = it.toObject(Market::class.java)
+                    marketList.add(farm!!)
+                }
+            }
+        }
+
 
         marketList.addAll(MarketFetcher.getItems())
         marketList.addAll(MarketFetcher.getItems())

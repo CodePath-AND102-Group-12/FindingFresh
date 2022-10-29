@@ -1,8 +1,11 @@
 package com.cpg12.findingfresh.objects
 
-data class Market(var  name: String? = null,
-             var address: String? = null,
-             var phone: String? = null,
-             var category: String? = null,
-             var image: String? = null) {
-}
+import com.google.firebase.firestore.DocumentReference
+
+data class Market(var name: String? = "",
+             var address: String? = "",
+             var phone: String? = "",
+             var category: String? = "",
+             var image: String? = ""
+             //,var fbImage: DocumentReference? = null
+    )
