@@ -30,17 +30,17 @@
         <!-- Hero Image from Job illustrations by Storyset: https://storyset.com/job-->
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/userLayout"
+            android:id="@+id/emailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Username"
+            android:hint="Email Address"
             android:textColorHint="?attr/colorPrimary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/usernameET"
+                android:id="@+id/emailET"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:singleLine="true"
