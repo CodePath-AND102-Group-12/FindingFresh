@@ -7,16 +7,21 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
+import android.widget.EditText
 import android.widget.Toast
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.database.Markets
 import com.cpg12.findingfresh.databinding.ActivityAddMarketBinding
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.net.URI
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class AddMarketActivity : AppCompatActivity() {
@@ -50,6 +55,47 @@ class AddMarketActivity : AppCompatActivity() {
         /** Upload image button chooses 1 picture from your gallery**/
         binding.marketUploadImageBtn.setOnClickListener {
             selectImage()
+        }
+
+        // Clicking on date input launches a date picker
+        val marketDateET = findViewById<EditText>(R.id.marketDateET)
+
+        marketDateET.setOnClickListener {
+            val datePicker: MaterialDatePicker<Long> = MaterialDatePicker
+                .Builder
+                .datePicker()
+                .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
+                .setTitleText("Select market date")
+                .build()
+            datePicker.show(supportFragmentManager, "DATE_PICKER")
+
+            // TODO: fix the date returned, at least for my timezone (Eastern) it is returned the day before selected date
+            datePicker.addOnPositiveButtonClickListener {
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val date = sdf.format(it)
+                marketDateET.setText(date)
+            }
+        }
+
+        // Clicking on time input launches a time picker
+        val marketStartTimeET = findViewById<EditText>(R.id.marketStartTimeET)
+
+        marketStartTimeET.setOnClickListener {
+            val timePicker: MaterialTimePicker = MaterialTimePicker
+                .Builder()
+                .setTitleText("Select market start time")
+                .setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
+                .build()
+            timePicker.show(supportFragmentManager, "TIME_PICKER")
+
+            timePicker.addOnPositiveButtonClickListener {
+                val selectedTime = Calendar.getInstance()
+                selectedTime[0, 0, 0, timePicker.hour, timePicker.minute] = 0
+
+                val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(selectedTime.time)
+
+                marketStartTimeET.setText(formattedTime)
+            }
         }
 
 
