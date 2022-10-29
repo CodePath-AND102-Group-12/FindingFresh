@@ -101,13 +101,9 @@ class RegisterActivity : AppCompatActivity() {
                                 ).show()
                             }
                         })
-
-
                     }
                 }
-
-                }
-
             }
         }
     }
+}

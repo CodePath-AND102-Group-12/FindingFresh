@@ -1,16 +1,21 @@
 package com.cpg12.findingfresh.activities
 
+import android.R.attr.fragment
+import android.R.attr.key
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.cpg12.findingfresh.FreshViewModel
-import com.cpg12.findingfresh.fragments.*
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.databinding.ActivityMainBinding
-
+import com.cpg12.findingfresh.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,6 +35,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val viewRoot = binding.root
         setContentView(viewRoot)
+
+        /** Information passed from intent (registration or login)
+         * Appears in the settings textview
+         */
+        val userId = intent.getStringExtra("user_id")
+        val emailId = intent.getStringExtra("email_id")
+
 
         /** ViewModel **/
         val viewModel: FreshViewModel by viewModels()
@@ -55,6 +67,8 @@ class MainActivity : AppCompatActivity() {
 
         // start the Activity on Market Listing fragment
         replaceFragment(marketListFragment)
+
+
     }
 
     // Helper function to clean up fragment changes
@@ -63,4 +77,5 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.content, fragment)
         fragmentTransaction.commit()
     }
+
 }
