@@ -35,7 +35,7 @@ class LogInActivity : AppCompatActivity() {
                 TextUtils.isEmpty(usernameET.text.toString().trim { it <= ' ' }) -> {
                     Toast.makeText(
                         this@LogInActivity,
-                        "Please Enter a Email",
+                        "Please Enter an Email",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -59,7 +59,7 @@ class LogInActivity : AppCompatActivity() {
 
                                     Toast.makeText(
                                         this@LogInActivity,
-                                        "Sign successful",
+                                        "Sign in successful",
                                         Toast.LENGTH_SHORT
                                     ).show()
 
