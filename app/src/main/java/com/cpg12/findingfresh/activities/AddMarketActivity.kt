@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,15 +56,16 @@ class AddMarketActivity : AppCompatActivity() {
             selectImage()
         }
 
+        // TODO: create a function to house the repetitive portion
         // Clicking on date input launches a date picker
-        val marketDateET = findViewById<EditText>(R.id.marketDateET)
+        val marketOpenDateET = findViewById<EditText>(R.id.marketOpenDateET)
 
-        marketDateET.setOnClickListener {
+        marketOpenDateET.setOnClickListener {
             val datePicker: MaterialDatePicker<Long> = MaterialDatePicker
                 .Builder
                 .datePicker()
                 .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
-                .setTitleText("Select market date")
+                .setTitleText("Select market open date")
                 .build()
             datePicker.show(supportFragmentManager, "DATE_PICKER")
 
@@ -73,10 +73,30 @@ class AddMarketActivity : AppCompatActivity() {
             datePicker.addOnPositiveButtonClickListener {
                 val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val date = sdf.format(it)
-                marketDateET.setText(date)
+                marketOpenDateET.setText(date)
             }
         }
 
+        val marketCloseDateET = findViewById<EditText>(R.id.marketCloseDateET)
+
+        marketCloseDateET.setOnClickListener {
+            val datePicker: MaterialDatePicker<Long> = MaterialDatePicker
+                .Builder
+                .datePicker()
+                .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
+                .setTitleText("Select market close date")
+                .build()
+            datePicker.show(supportFragmentManager, "DATE_PICKER")
+
+            // TODO: fix the date returned, at least for my timezone (Eastern) it is returned the day before selected date
+            datePicker.addOnPositiveButtonClickListener {
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val date = sdf.format(it)
+                marketCloseDateET.setText(date)
+            }
+        }
+
+        // TODO: create a function to house the repetitive portion
         // Clicking on time input launches a time picker
         val marketStartTimeET = findViewById<EditText>(R.id.marketStartTimeET)
 
@@ -95,6 +115,26 @@ class AddMarketActivity : AppCompatActivity() {
                 val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(selectedTime.time)
 
                 marketStartTimeET.setText(formattedTime)
+            }
+        }
+
+        val marketCloseTimeET = findViewById<EditText>(R.id.marketCloseTimeET)
+
+        marketCloseTimeET.setOnClickListener {
+            val timePicker: MaterialTimePicker = MaterialTimePicker
+                .Builder()
+                .setTitleText("Select market close time")
+                .setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
+                .build()
+            timePicker.show(supportFragmentManager, "TIME_PICKER")
+
+            timePicker.addOnPositiveButtonClickListener {
+                val selectedTime = Calendar.getInstance()
+                selectedTime[0, 0, 0, timePicker.hour, timePicker.minute] = 0
+
+                val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(selectedTime.time)
+
+                marketCloseTimeET.setText(formattedTime)
             }
         }
 
@@ -119,7 +159,10 @@ class AddMarketActivity : AppCompatActivity() {
             val marketCategory = binding.marketCategoryET.text.toString()
             val marketDescription = binding.marketDescriptionET.text.toString()
             //TODO: using a datetime object instead of string?
-            val marketDateTime = binding.marketDateET.text.toString()
+            val marketOpenDate = binding.marketOpenDateET.text.toString()
+            val marketStartTime = binding.marketStartTimeET.text.toString()
+            val marketCloseDate = binding.marketCloseDateET.text.toString()
+            val marketCloseTime = binding.marketCloseTimeET.text.toString()
 
             /** create instance of market class**/
             val markets = Markets(
@@ -129,7 +172,10 @@ class AddMarketActivity : AppCompatActivity() {
                 marketContactName,
                 marketCategory,
                 marketDescription,
-                marketDateTime)
+                marketOpenDate,
+                marketStartTime,
+                marketCloseDate,
+                marketCloseTime)
 
             /** Creates the entity(child) into the node based on the market name**/
             databaseReference.child(marketName).setValue(markets).addOnCompleteListener {

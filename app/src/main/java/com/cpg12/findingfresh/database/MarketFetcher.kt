@@ -12,7 +12,7 @@ class MarketFetcher {
 
         fun getItems(): MutableList<Market> {
             val featuredMarketList : MutableList<Market> = ArrayList()
-            for (i in name.indices) {
+            for (i in 0..1) {
                 val featuredMarket = Market(name[i], address[i], phone[i], category[i], image[i])
                 featuredMarketList.add(featuredMarket)
             }

@@ -44,18 +44,40 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/marketDateLayout"
+            android:id="@+id/marketOpenDateLayout"
             android:layout_marginTop="8dp"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:hint="Market Date"
+            android:hint="Market Open Date"
             android:textColorHint="?attr/colorPrimary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/marketCategoryLayout">
 
             <EditText
-                android:id="@+id/marketDateET"
+                android:id="@+id/marketOpenDateET"
+                style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:inputType="date"
+                android:textColorHint="?attr/colorPrimary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/marketCloseDateLayout"
+            android:layout_marginTop="8dp"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="Market Close Date"
+            android:textColorHint="?attr/colorPrimary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/marketOpenDateLayout">
+
+            <EditText
+                android:id="@+id/marketCloseDateET"
                 style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -74,7 +96,7 @@
             android:textColorHint="?attr/colorPrimary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/marketDateLayout">
+            app:layout_constraintTop_toBottomOf="@+id/marketCloseDateLayout">
 
             <EditText
                 android:id="@+id/marketStartTimeET"
@@ -89,23 +111,122 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/marketNameLayout"
-            android:layout_width="match_parent"
+            android:id="@+id/marketCloseTimeLayout"
+            android:layout_marginTop="8dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:hint="Market Name"
-            android:layout_marginTop="24dp"
+            android:hint="Market Close Time"
             android:textColorHint="?attr/colorPrimary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/marketStartTimeLayout">
 
             <EditText
-                android:id="@+id/marketNameET"
+                android:id="@+id/marketCloseTimeET"
+                style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:inputType="text"
+                android:focusable="false"
+                android:inputType="date"
                 android:textColorHint="?attr/colorPrimary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/daysChipLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Days Open"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/marketCloseTimeLayout"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/daysOfWeekChipGroup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/daysChipLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunday"
+                android:id="@+id/sunday"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday"
+                android:id="@+id/monday"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuesday"
+                android:id="@+id/tuesday"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wednesday"
+                android:id="@+id/wednesday"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thursday"
+                android:id="@+id/thursday"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friday"
+                android:id="@+id/friday"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:id="@+id/saturday"
+                />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/marketNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Market Name"
+            android:textColorHint="?attr/colorPrimary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/daysOfWeekChipGroup">
+
+            <EditText
+                android:id="@+id/marketNameET"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,6 +250,26 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/marketContactNameLayout"
+            android:hint="Contact Name"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="?attr/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/marketLocationLayout">
+
+            <EditText
+                android:id="@+id/marketContactNameET"
+                android:inputType="textPersonName"
+                style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="?attr/colorPrimary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/marketEmailLayout"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
@@ -137,7 +278,7 @@
             android:textColorHint="?attr/colorPrimary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/marketLocationLayout">
+            app:layout_constraintTop_toBottomOf="@+id/marketContactNameLayout">
 
             <EditText
                 android:id="@+id/marketEmailET"
@@ -152,26 +293,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/marketContactNameLayout"
-            android:hint="Contact Name"
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="?attr/colorPrimary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/marketEmailLayout">
-
-            <EditText
-                android:id="@+id/marketContactNameET"
-                android:inputType="textPersonName"
-                style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="?attr/colorPrimary" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/marketDescriptionLayout"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
@@ -180,7 +301,7 @@
             android:textColorHint="?attr/colorPrimary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/marketContactNameLayout">
+            app:layout_constraintTop_toBottomOf="@+id/marketEmailLayout">
 
             <EditText
                 android:id="@+id/marketDescriptionET"
@@ -202,21 +323,21 @@
             android:layout_marginBottom="16dp"
             android:text="Submit"
             app:layout_constraintTop_toBottomOf="@id/marketDescriptionLayout"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/marketCancelBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="16dp"
-            android:text="Cancel"
-            app:layout_constraintTop_toBottomOf="@id/marketDescriptionLayout"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
+            android:id="@+id/marketCancelBtn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="Cancel"
+            app:layout_constraintTop_toBottomOf="@id/marketDescriptionLayout"
+            app:layout_constraintEnd_toStartOf="@id/marketSubmitBtn" />
+
+        <Button
             android:id="@+id/marketUploadImageBtn"
-            android:layout_width="171dp"
+            android:layout_width="175dp"
             android:layout_height="55dp"
             android:text="Upload image"
             app:layout_constraintEnd_toEndOf="parent"
@@ -224,8 +345,8 @@
 
         <ImageView
             android:id="@+id/marketPictureIV"
-            android:layout_width="174dp"
-            android:layout_height="159dp"
+            android:layout_width="175dp"
+            android:layout_height="160dp"
             app:layout_constraintTop_toBottomOf="@+id/marketUploadImageBtn"
             app:layout_constraintEnd_toEndOf="parent" />
 

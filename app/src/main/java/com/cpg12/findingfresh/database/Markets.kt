@@ -8,5 +8,8 @@ data class Markets(
     var marketCategory: String ? = null,
     var marketDescription: String ? = null,
     //TODO: using a datetime object instead of string?
-    var marketDateTime: String ? = null
+    var marketOpenDate: String ? = null,
+    var marketOpenTime: String ? = null,
+    var marketCloseDate: String ? = null,
+    var marketCloseTime: String ? = null
 )

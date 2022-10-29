@@ -70,9 +70,8 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
 
 
         marketList.addAll(MarketFetcher.getItems())
-        marketList.addAll(MarketFetcher.getItems())
 
-        featuredMarketListingAdapter = FeaturedMarketListingAdapter(marketList.subList(0, 3))
+        featuredMarketListingAdapter = FeaturedMarketListingAdapter(marketList.subList(0, marketList.size - 1))
         featuredMarketListRecyclerView.adapter = featuredMarketListingAdapter
         featuredMarketListRecyclerView.layoutManager = featuredMarketListLayoutManager
 
