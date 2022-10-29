@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
-import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.databinding.ActivityRegisterBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -35,10 +34,10 @@ class RegisterActivity : AppCompatActivity() {
             /** Conditional statement to make sure the EditText fields are not empty
              * Trim gets rid of spaces in front or after the text **/
             when {
-                TextUtils.isEmpty(binding.usernameET.text.toString().trim { it <= ' ' }) -> {
+                TextUtils.isEmpty(binding.emailET.text.toString().trim { it <= ' ' }) -> {
                     Toast.makeText(
                         this@RegisterActivity,
-                        "Please Enter a Email",
+                        "Please Enter an Email",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -54,21 +53,21 @@ class RegisterActivity : AppCompatActivity() {
                 TextUtils.isEmpty(binding.password2ET.text.toString().trim { it <= ' ' }) -> {
                     Toast.makeText(
                         this@RegisterActivity,
-                        "Please Confirm the password",
+                        "Please Confirm the Password",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             else -> {
 
-                val email: String = binding.usernameET.text.toString().trim { it <= ' ' }
+                val email: String = binding.emailET.text.toString().trim { it <= ' ' }
                 val password: String = binding.password1ET.text.toString().trim { it <= ' ' }
-                val password_confirm: String = binding.password2ET.text.toString().trim { it <= ' ' }
+                val passwordConfirm: String = binding.password2ET.text.toString().trim { it <= ' ' }
 
-                /** Conditional statment to check if passwords match**/
-                if (password != password_confirm) {
+                /** Conditional statement to check if passwords match**/
+                if (password != passwordConfirm) {
                     Toast.makeText(
                         this@RegisterActivity,
-                        "Your Passwords do not match",
+                        "Entered passwords do not match",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
@@ -79,11 +78,11 @@ class RegisterActivity : AppCompatActivity() {
                                 val firebaseUser: FirebaseUser = task.result!!.user!!
                                 Toast.makeText(
                                     this@RegisterActivity,
-                                    "Registration is sucessfull",
+                                    "Registration is successful",
                                     Toast.LENGTH_SHORT
                                 ).show()
 
-                                /** if sucessfully register, intents to main activity and sends the data uid and email there too**/
+                                /** if successfully register, intents to main activity and sends the data uid and email there too**/
                                 val intent = Intent(this@RegisterActivity, MainActivity::class.java)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -93,7 +92,7 @@ class RegisterActivity : AppCompatActivity() {
                                 finish()
 
                             } else {
-                                /** If registration unsucessfull, show toast **/
+                                /** If registration unsuccessful, show toast **/
                                 Toast.makeText(
                                     this@RegisterActivity,
                                     task.exception!!.message.toString(),

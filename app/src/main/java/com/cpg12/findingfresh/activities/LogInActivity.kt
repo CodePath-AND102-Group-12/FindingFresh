@@ -11,7 +11,6 @@ import com.cpg12.findingfresh.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
 
 class LogInActivity : AppCompatActivity() {
@@ -21,7 +20,7 @@ class LogInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-        val usernameET = findViewById<EditText>(R.id.usernameET)
+        val emailET = findViewById<EditText>(R.id.emailET)
         val passwordET = findViewById<EditText>(R.id.passwordInputET)
         val loginBtn = findViewById<Button>(R.id.loginButton)
         val registerBtn = findViewById<Button>(R.id.createAccountBtn)
@@ -32,7 +31,7 @@ class LogInActivity : AppCompatActivity() {
             /** Conditional statement to make sure the EditText fields are not empty
              * Trim gets rid of spaces in front or after the text **/
             when {
-                TextUtils.isEmpty(usernameET.text.toString().trim { it <= ' ' }) -> {
+                TextUtils.isEmpty(emailET.text.toString().trim { it <= ' ' }) -> {
                     Toast.makeText(
                         this@LogInActivity,
                         "Please Enter an Email",
@@ -49,7 +48,7 @@ class LogInActivity : AppCompatActivity() {
                 }
                 else -> {
 
-                    val email: String = usernameET.text.toString().trim { it <= ' ' }
+                    val email: String = emailET.text.toString().trim { it <= ' ' }
                     val password: String = passwordET.text.toString().trim { it <= ' ' }
 
                         /** creates the account using email and password in firebase **/
@@ -63,7 +62,7 @@ class LogInActivity : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-                                    /** if sucessfully sign in, intents to main activity and sends the data uid and email there too**/
+                                    /** if successfully sign in, intents to main activity and sends the data uid and email there too**/
                                     val intent = Intent(this@LogInActivity, MainActivity::class.java)
                                     intent.flags =
                                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -73,7 +72,7 @@ class LogInActivity : AppCompatActivity() {
                                     finish()
 
                                 } else {
-                                    /** If sign in unsucessfull, show toast **/
+                                    /** If sign in unsuccessful, show toast **/
                                     Toast.makeText(
                                         this@LogInActivity,
                                         task.exception!!.message.toString(),
