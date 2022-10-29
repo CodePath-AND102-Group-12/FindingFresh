@@ -1,6 +1,8 @@
 package com.cpg12.findingfresh.fragments
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,12 +21,14 @@ import com.cpg12.findingfresh.adapters.FeaturedMarketListingAdapter
 import com.cpg12.findingfresh.adapters.MarketListingAdapter
 import com.cpg12.findingfresh.database.MarketFetcher
 import com.cpg12.findingfresh.objects.Market
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
-    private lateinit var featuredMarketListingAdapter : FeaturedMarketListingAdapter
+    private lateinit var featuredMarketListingAdapter: FeaturedMarketListingAdapter
     private lateinit var allMarketListingAdapter: MarketListingAdapter
     private val marketList = arrayListOf<Market>()
-    //private lateinit var comm: Communicator
 
     private val viewModel: FreshViewModel by activityViewModels()
 
@@ -39,28 +43,25 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_market_listing, container, false)
-        val featuredMarketListLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val featuredMarketListRecyclerView = view.findViewById<RecyclerView>(R.id.featuredMarketsRecyclerView)
+        val featuredMarketListLayoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val featuredMarketListRecyclerView =
+            view.findViewById<RecyclerView>(R.id.featuredMarketsRecyclerView)
 
-        // adding starter list twice just to display more items
         marketList.addAll(MarketFetcher.getItems())
         marketList.addAll(MarketFetcher.getItems())
 
-        // The first four markets are featured for now
         featuredMarketListingAdapter = FeaturedMarketListingAdapter(marketList.subList(0, 3))
-
         featuredMarketListRecyclerView.adapter = featuredMarketListingAdapter
         featuredMarketListRecyclerView.layoutManager = featuredMarketListLayoutManager
 
         val allMarketListLayoutManager = GridLayoutManager(context, 2)
         val allMarketListRecyclerView = view.findViewById<RecyclerView>(R.id.allMarketsRecyclerView)
 
-        //comm = requireActivity() as Communicator
-
-        allMarketListingAdapter = MarketListingAdapter(marketList,
+        allMarketListingAdapter = MarketListingAdapter(
+            marketList,
             requireContext(),
             this
-            //,comm
         )
 
         allMarketListRecyclerView.adapter = allMarketListingAdapter
@@ -102,4 +103,5 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
         transaction.commit()
     }
+
 }

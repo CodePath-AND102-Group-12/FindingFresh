@@ -3,16 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/activity_add_market.xml" value="0.46770833333333334" />
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/activity_login.xml" value="0.46770833333333334" />
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/activity_register.xml" value="0.46770833333333334" />
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/fragment_settings.xml" value="0.22745694022289767" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.189" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable/ic_launcher_background.xml" value="0.105" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.105" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/activity_add_market.xml" value="0.1757852077001013" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/dialog_wait.xml" value="0.1327467482785004" />
+        <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/fragment_market_detail.xml" value="0.33" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/fragment_market_listing.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/layout.xml" value="0.1" />

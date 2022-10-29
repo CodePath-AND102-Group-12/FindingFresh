@@ -1,8 +1,8 @@
 package com.cpg12.findingfresh.objects
 
-class Market(val name: String,
-             val address: String,
-             val phone: String,
-             val category: String,
-             val image: String) {
+data class Market(var  name: String? = null,
+             var address: String? = null,
+             var phone: String? = null,
+             var category: String? = null,
+             var image: String? = null) {
 }

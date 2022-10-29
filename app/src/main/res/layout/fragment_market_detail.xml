@@ -56,6 +56,16 @@
             app:layout_constraintStart_toStartOf="parent"
             android:text="Market Phone" />
 
+        <Button
+            android:id="@+id/favbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:text="Add to Favorites"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/marketImage" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
