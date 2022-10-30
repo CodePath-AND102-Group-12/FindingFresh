@@ -76,9 +76,8 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
             allMarketListRecyclerView.layoutManager = allMarketListLayoutManager
         }
 
+        /** still using marketfetcher for featured markets! **/
         val marketList = MarketFetcher.getItems()
-        println(viewModel.markets.value?.get(0)?.name)
-
 
         featuredMarketListingAdapter = FeaturedMarketListingAdapter(marketList.subList(0,marketList.size - 1))
         featuredMarketListRecyclerView.adapter = featuredMarketListingAdapter
