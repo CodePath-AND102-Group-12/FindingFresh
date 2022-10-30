@@ -12,6 +12,7 @@ import com.cpg12.findingfresh.GlideApp
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.objects.Market
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class MarketListingAdapter(private val marketList: List<Market>,
@@ -54,10 +55,12 @@ class MarketListingAdapter(private val marketList: List<Market>,
 
         holder.marketName.text = market.name
         holder.marketCategory.text = market.category
-        val storageReference = market.image?.path
-        val ref = storageReference?.let { FirebaseStorage.getInstance().getReference(it) }
-        GlideApp.with(context).load(ref).into(holder.marketImage)
+        val storageReference = FirebaseStorage.getInstance().getReference(market.image.toString())
+        storageReference.downloadUrl.addOnSuccessListener {
+            GlideApp.with(context).load(it).into(holder.marketImage)
+        }.addOnFailureListener {
 
+        }
     }
 
     override fun getItemCount(): Int {

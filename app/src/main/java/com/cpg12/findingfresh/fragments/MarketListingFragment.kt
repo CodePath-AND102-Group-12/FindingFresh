@@ -57,12 +57,9 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
         val docRef = firestore.collection("farms")
         docRef.get().addOnSuccessListener { documents ->
             val farmsData = mutableListOf<Market>()
-            var i = 0
             for (document in documents) {
                 val farm = document.toObject(Market::class.java)
                 farmsData.add(farm)
-                println(farmsData[i].name)
-                i++
             }
             println(farmsData[0].name)
             val allMarketListingAdapter = MarketListingAdapter(
