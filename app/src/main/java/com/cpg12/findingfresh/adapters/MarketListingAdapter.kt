@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.cpg12.findingfresh.GlideApp
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.objects.Market
+import com.google.firebase.storage.FirebaseStorage
+
 
 class MarketListingAdapter(private val marketList: List<Market>,
                            private val context: Context,
@@ -51,6 +54,9 @@ class MarketListingAdapter(private val marketList: List<Market>,
 
         holder.marketName.text = market.name
         holder.marketCategory.text = market.category
+        val storageReference = market.image?.path
+        val ref = storageReference?.let { FirebaseStorage.getInstance().getReference(it) }
+        GlideApp.with(context).load(ref).into(holder.marketImage)
 
     }
 

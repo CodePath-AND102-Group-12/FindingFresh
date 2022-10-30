@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh2/app/src/main/res/layout/fragment_settings.xml" value="0.1693840579710145" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.189" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable/ic_launcher_background.xml" value="0.105" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.105" />
@@ -12,8 +11,10 @@
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/dialog_wait.xml" value="0.1327467482785004" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/fragment_market_detail.xml" value="0.33" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/fragment_market_listing.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/fragment_shopping_list.xml" value="0.18115942028985507" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/layout.xml" value="0.1" />
+        <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/viewholder_shopping_list.xml" value="0.5" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/menu/nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.2966485507246377" />
       </map>

@@ -65,7 +65,7 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
                 i++
             }
             println(farmsData[0].name)
-            val allMarketListingAdapter: MarketListingAdapter = MarketListingAdapter(
+            val allMarketListingAdapter = MarketListingAdapter(
                 farmsData,
                 requireContext(),
                 this
