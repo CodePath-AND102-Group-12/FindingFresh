@@ -52,21 +52,15 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
 
 
 
-        var firestore = FirebaseFirestore.getInstance()
-        firestore.collection("farms").addSnapshotListener {
-                snapshot, e ->
-            if (e != null) {
-                Log.w(ContentValues.TAG, "Listen Failed", e)
-                return@addSnapshotListener
-            }
-            if (snapshot != null) {
-                val documents = snapshot.documents
-                documents.forEach {
-                    val farm = it.toObject(Market::class.java)
-                    marketList.add(farm!!)
-                }
+        val firestore = FirebaseFirestore.getInstance()
+        val docRef = firestore.collection("farms")
+        docRef.get().addOnSuccessListener { documents ->
+            for (document in documents) {
+                val farm = document.toObject(Market::class.java)
+                marketList.add(farm)
             }
         }
+
 
 
         marketList.addAll(MarketFetcher.getItems())

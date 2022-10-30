@@ -6,6 +6,5 @@ data class Market(var name: String? = "",
              var address: String? = "",
              var phone: String? = "",
              var category: String? = "",
-             var image: String? = ""
-             //,var fbImage: DocumentReference? = null
+             var image: DocumentReference? = null
     )
