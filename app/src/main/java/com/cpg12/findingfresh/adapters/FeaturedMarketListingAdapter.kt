@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.objects.Market
@@ -15,7 +16,7 @@ private lateinit var  marketName: TextView
 private lateinit var  marketAddress: TextView
 private lateinit var  marketPhone: TextView
 
-class FeaturedMarketListingAdapter(private val featuredMarketList: MutableList<Market>): RecyclerView.Adapter<FeaturedMarketListingAdapter.ViewHolder>() {
+class FeaturedMarketListingAdapter(private val featuredMarketList: List<Market>): RecyclerView.Adapter<FeaturedMarketListingAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -44,7 +45,7 @@ class FeaturedMarketListingAdapter(private val featuredMarketList: MutableList<M
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val featuredMarket = featuredMarketList.get(position)
+        val featuredMarket = featuredMarketList[position]
 
         marketName.text = featuredMarket.name
         marketAddress.text = featuredMarket.address

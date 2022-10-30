@@ -6,16 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.objects.Market
 
-private lateinit var marketData: Market
-
-class MarketListingAdapter(private val marketList: MutableList<Market>,
+class MarketListingAdapter(private val marketList: List<Market>,
                            private val context: Context,
                            private val listener: ClickListener
-                           //,private val comm: Communicator
                            )
     :RecyclerView.Adapter<MarketListingAdapter.ViewHolder>() {
 
@@ -42,7 +40,7 @@ class MarketListingAdapter(private val marketList: MutableList<Market>,
         override fun onClick(v: View?) {
             val position : Int = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                marketData = marketList[position]
+                val marketData = marketList[position]
                 listener.gotoMarketDetail(position, marketData)
             }
         }

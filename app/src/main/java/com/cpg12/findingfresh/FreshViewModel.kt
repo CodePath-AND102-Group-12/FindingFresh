@@ -24,4 +24,10 @@ class FreshViewModel(): ViewModel() {
     fun setMarketData(passMarket: Market) {
         _market.value = passMarket
     }
+
+    private var _markets = MutableLiveData<List<Market>>()
+    val markets: LiveData<List<Market>> = _markets
+    fun setMarketListData(passMarkets: List<Market>) {
+        _markets.value = passMarkets
+    }
 }

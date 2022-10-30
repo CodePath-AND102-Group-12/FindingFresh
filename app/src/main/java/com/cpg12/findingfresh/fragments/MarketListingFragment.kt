@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,11 +28,12 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
     private lateinit var featuredMarketListingAdapter: FeaturedMarketListingAdapter
-    private lateinit var allMarketListingAdapter: MarketListingAdapter
-    private val marketList = arrayListOf<Market>()
+    private lateinit var marketList: List<Market>
 
     private val viewModel: FreshViewModel by activityViewModels()
 
@@ -50,36 +53,36 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
         val featuredMarketListRecyclerView =
             view.findViewById<RecyclerView>(R.id.featuredMarketsRecyclerView)
 
-
-
         val firestore = FirebaseFirestore.getInstance()
         val docRef = firestore.collection("farms")
         docRef.get().addOnSuccessListener { documents ->
+            val farmsData = mutableListOf<Market>()
+            var i = 0
             for (document in documents) {
                 val farm = document.toObject(Market::class.java)
-                marketList.add(farm)
+                farmsData.add(farm)
+                println(farmsData[i].name)
+                i++
             }
+            println(farmsData[0].name)
+            val allMarketListingAdapter: MarketListingAdapter = MarketListingAdapter(
+                farmsData,
+                requireContext(),
+                this
+            )
+            val allMarketListLayoutManager = GridLayoutManager(context, 2)
+            val allMarketListRecyclerView = view.findViewById<RecyclerView>(R.id.allMarketsRecyclerView)
+            allMarketListRecyclerView.adapter = allMarketListingAdapter
+            allMarketListRecyclerView.layoutManager = allMarketListLayoutManager
         }
 
+        val marketList = MarketFetcher.getItems()
+        println(viewModel.markets.value?.get(0)?.name)
 
 
-        marketList.addAll(MarketFetcher.getItems())
-
-        featuredMarketListingAdapter = FeaturedMarketListingAdapter(marketList.subList(0, marketList.size - 1))
+        featuredMarketListingAdapter = FeaturedMarketListingAdapter(marketList.subList(0,marketList.size - 1))
         featuredMarketListRecyclerView.adapter = featuredMarketListingAdapter
         featuredMarketListRecyclerView.layoutManager = featuredMarketListLayoutManager
-
-        val allMarketListLayoutManager = GridLayoutManager(context, 2)
-        val allMarketListRecyclerView = view.findViewById<RecyclerView>(R.id.allMarketsRecyclerView)
-
-        allMarketListingAdapter = MarketListingAdapter(
-            marketList,
-            requireContext(),
-            this
-        )
-
-        allMarketListRecyclerView.adapter = allMarketListingAdapter
-        allMarketListRecyclerView.layoutManager = allMarketListLayoutManager
 
         // default spinner code based on official documentation: https://developer.android.com/develop/ui/views/components/spinner
         // will need to later implement an OnItemSelectedListener
