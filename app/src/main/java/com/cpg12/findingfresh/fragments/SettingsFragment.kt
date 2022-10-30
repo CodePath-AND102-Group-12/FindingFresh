@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.activities.LogInActivity
@@ -14,11 +15,12 @@ import com.google.firebase.auth.FirebaseAuth
 class SettingsFragment : Fragment() {
 
 
-
-
 /*    val userID = (activity as? MainActivity)?.userId
     val emailID = (activity as? MainActivity)?.emailId*/
 
+    /** retrieves firebase UID and email associated with current user **/
+    private val uID = FirebaseAuth.getInstance().currentUser!!.uid
+    private val emailID = FirebaseAuth.getInstance().currentUser!!.email
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,24 +33,25 @@ class SettingsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
 
-/*        val Email = view.findViewById(R.id.user_Tv) as TextView
+        val Email = view.findViewById(R.id.user_Tv) as TextView
         val UserID = view.findViewById(R.id.email_Tv) as TextView
 
-        Email.text = userID.toString()
-        UserID.text = emailID.toString()*/
+        /** Assigns the textviews to the email and UID**/
+        Email.text = uID
+        UserID.text = emailID.toString()
 
+        /** Logout button signs out**/
         var logout = view.findViewById<Button>(R.id.logoutBtn)
         logout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-
             val intent = Intent(activity, LogInActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             activity?.finish()
         }
-
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
