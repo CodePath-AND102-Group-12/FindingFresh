@@ -66,7 +66,7 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         //TODO: set to proper address when Market Object is finalized
         marketAddress.setOnClickListener {
             val gmmIntentUri =
-                Uri.parse("google.navigation:q=${marketAddress.text}")
+                Uri.parse("google.navigation:q=${marketDetail?.location?.latitude},${marketDetail?.location?.longitude}")
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
             startActivity(mapIntent)
