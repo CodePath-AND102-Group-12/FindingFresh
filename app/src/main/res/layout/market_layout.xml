@@ -46,19 +46,6 @@
                 android:layout_height="wrap_content"
                 android:text="Market Category" />
 
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:orientation="vertical">
-                <Button
-                    style="?attr/materialIconButtonFilledStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="Navigate"
-                    app:icon="@drawable/ic_directions"/>
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

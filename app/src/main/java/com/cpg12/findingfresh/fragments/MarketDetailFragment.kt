@@ -14,19 +14,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.cpg12.findingfresh.FreshViewModel
 import com.cpg12.findingfresh.R
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.CameraUpdateFactory.newLatLng
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
-class MarketDetailFragment() : Fragment() {
+class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
 
     //private lateinit var marketDetailDataArray: ArrayList<String>
     private lateinit var marketImage: ImageView
 
     private val viewModel: FreshViewModel by activityViewModels()
-
+    private lateinit var mMap: GoogleMap
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +56,12 @@ class MarketDetailFragment() : Fragment() {
         marketAddress.text = marketDetail?.address
         marketCategory.text = marketDetail?.category
         marketPhone.text = marketDetail?.phone
+
+        val supportMapFragment =
+            childFragmentManager.findFragmentById(R.id.detailMap) as SupportMapFragment?
+        supportMapFragment?.getMapAsync(this)
+
+
 
         //TODO: set to proper address when Market Object is finalized
         marketAddress.setOnClickListener {
@@ -82,6 +95,19 @@ class MarketDetailFragment() : Fragment() {
         }
 
         return view
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        val marketDetail = viewModel.market.value
+        marketDetail?.location?.let {
+            val loc = LatLng (it.latitude, it.longitude)
+            mMap.addMarker(MarkerOptions().position(loc).title(marketDetail.name))
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,12f))
+            mMap.uiSettings.isZoomControlsEnabled = true
+        }
+
+
     }
 
 }
