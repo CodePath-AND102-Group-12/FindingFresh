@@ -1,10 +1,6 @@
 package com.cpg12.findingfresh.activities
 
-import android.R.attr.fragment
-import android.R.attr.key
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -14,7 +10,6 @@ import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.databinding.ActivityMainBinding
 import com.cpg12.findingfresh.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity() {

@@ -1,7 +1,6 @@
 package com.cpg12.findingfresh.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,9 +15,12 @@ import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.adapters.ShoppingListAdapter
 import com.cpg12.findingfresh.database.ShoppingList
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.StorageReference
+import com.google.firebase.database.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.cpg12.findingfresh.objects.ShoppingListViewModel
 
 
 class ShoppingListFragment : Fragment() {
@@ -26,9 +28,17 @@ class ShoppingListFragment : Fragment() {
     private lateinit var shoppingListAdapter: ShoppingListAdapter
     private lateinit var shoppingArrayList: ArrayList<ShoppingList>
 
+    private lateinit var shoppingViewModel: ShoppingListViewModel
+
     /** Firebase object initialization **/
     private lateinit var auth : FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        println("loaded market listing fragment")
+    }
 
 
     /*
@@ -44,11 +54,7 @@ class ShoppingListFragment : Fragment() {
         val shoppingField: EditText = view.findViewById(R.id.yourItemET)
         val shoppingButton: Button = view.findViewById(R.id.submitItemBtn)
 
-        val shoppingRecyclerView = view.findViewById(R.id.shoppingRV) as RecyclerView
-        shoppingRecyclerView.layoutManager = GridLayoutManager(context, 1) //controls movies per row
-        shoppingArrayList = arrayListOf()
-        shoppingListAdapter = ShoppingListAdapter(shoppingArrayList)
-        shoppingRecyclerView.adapter = shoppingListAdapter
+
 
         //EventChangeListener()
 
@@ -64,15 +70,13 @@ class ShoppingListFragment : Fragment() {
 
         /** Creates the "shoppingList" node under the UID, to store shopping list**/
         shoppingButton.setOnClickListener {
-
             /** Gets the string value from field **/
             val itemToAdd = shoppingField.text.toString()
             /** create instance of ShoppingList class **/
             val shoppingList = ShoppingList(itemToAdd)
 
-
             if (uid != null) {
-                databaseReference.child(uid).child("shoppingList").push().setValue(shoppingList).addOnCompleteListener {
+                databaseReference.child(uid).push().setValue(shoppingList).addOnCompleteListener {
                     if (it.isSuccessful){
                         Toast.makeText(activity, "Shopping Item added", Toast.LENGTH_SHORT).show()
                         shoppingField.setText("")
@@ -84,6 +88,7 @@ class ShoppingListFragment : Fragment() {
         }
         return view
     }
+
 
 /*    private fun EventChangeListener() {
         val auth = FirebaseAuth.getInstance().currentUser
@@ -109,6 +114,18 @@ class ShoppingListFragment : Fragment() {
                 })
         }
     }*/
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        shoppingRecyclerView = view.findViewById(R.id.shoppingRV)
+        shoppingRecyclerView.layoutManager = GridLayoutManager(context, 1)
+        shoppingListAdapter = ShoppingListAdapter()
+        shoppingRecyclerView.adapter = shoppingListAdapter
+        shoppingViewModel = ViewModelProvider(this).get(ShoppingListViewModel::class.java)
+        shoppingViewModel.allShoppingList.observe(viewLifecycleOwner, Observer {
+            shoppingListAdapter.updateShoppinglist(it)
+        })
+    }
 
 
 }

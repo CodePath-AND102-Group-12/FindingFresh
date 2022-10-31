@@ -8,25 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.database.ShoppingList
 
-class ShoppingListAdapter(
-    private val shoppingList: List<ShoppingList>,
-    )
+class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingListViewHolder>() {
 
-: RecyclerView.Adapter<ShoppingListAdapter.ShoppingListViewHolder>() {
+    private val shoppingList = ArrayList<ShoppingList>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_shopping_list, parent, false)
-        return ShoppingListViewHolder(view)
-    }
-
-
-    /**
-     * This inner class lets us refer to all the different View elements
-     * (Yes, the same ones as in the XML layout files!)
-     */
-    inner class ShoppingListViewHolder(val sView: View) : RecyclerView.ViewHolder(sView) {
-        val sListItem: TextView = sView.findViewById<View>(R.id.shoppingListTV) as TextView
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.shopping_list_item, parent, false)
+        return ShoppingListViewHolder(itemView)
     }
 
 
@@ -34,12 +23,27 @@ class ShoppingListAdapter(
      * This lets us "bind" each Views in the ViewHolder to its' actual data!
      */
     override fun onBindViewHolder(holder: ShoppingListAdapter.ShoppingListViewHolder, position: Int) {
-        val slist = shoppingList[position]
-        holder.sListItem.text = slist.shoppingItem
+        val currentItem = shoppingList[position]
+        holder.sListItem.text = currentItem.shoppingItem
     }
 
 
     override fun getItemCount(): Int {
         return shoppingList.size
+    }
+
+    fun updateShoppinglist(shoppingList: List<ShoppingList>){
+        this.shoppingList.clear()
+        this.shoppingList.addAll(shoppingList)
+        notifyDataSetChanged()
+    }
+
+
+    /**
+     * This class lets us refer to all the different View elements
+     * (Yes, the same ones as in the XML layout files!)
+     */
+    class ShoppingListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val sListItem : TextView = itemView.findViewById(R.id.ShoppingItemTV)
     }
 }
