@@ -1,4 +1,4 @@
-# Milestone 1 - Farmer's Market
+# Milestone 2 - Farmer's Market
 
 ## Table of Contents
 
@@ -28,16 +28,23 @@ An app to find local Farmer's Markets, their vendors, and how to reach them.
 
 **Required Features**
 
-* Google Maps API Integration to navigate user to local events or show on map
-* Personalization
-* Shopping/Grocery list (how often they want to purchase something)
-* Filter by categories (plants, clothes, fruits)
-* Calendar of events
+[x] Recyler View for markets
+[x] Bottom Navigation Bar
+[x] Firebase to store market information
+[x] Google Maps API Integration to navigate user to local events or show on map
+[x] Account and login capabilities
+[x] User settings
+[ ] Firebase item for vendors
+[ ] Shopping/Grocery list
+[ ] Filter by categories (plants, bakery, fruits, produce)
+[ ] Calendar sort
+[ ] List of saved farmers markets
 
 **Stretch Features**
 
 * Seller features - allow customer orders
 * Seller features - allow messaging with customers
+* Personalization
 
 ### 2. Screen Archetypes
 
@@ -114,3 +121,8 @@ Refined wireframe after the Unit 7 session
 <img src="https://github.com/CodePath-AND102-Group-12/Temp/blob/master/Group%2012%20Interactice%20Prototype.gif?raw=true" height="600">
 
 [Recorded with Kap for MacOS](https://getkap.co/)
+
+Milestone 2 Build Progress
+![Video Walkthrough](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/Milestone_2.gif "Milestone 2 Build Progress")
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
