@@ -28,17 +28,17 @@ An app to find local Farmer's Markets, their vendors, and how to reach them.
 
 **Required Features**
 
-[x] Recyler View for markets
-[x] Bottom Navigation Bar
-[x] Firebase to store market information
-[x] Google Maps API Integration to navigate user to local events or show on map
-[x] Account and login capabilities
-[x] User settings
-[ ] Firebase item for vendors
-[ ] Shopping/Grocery list
-[ ] Filter by categories (plants, bakery, fruits, produce)
-[ ] Calendar sort
-[ ] List of saved farmers markets
+- [x] Recyler View for markets
+- [x] Bottom Navigation Bar
+- [x] Firebase to store market information
+- [x] Google Maps API Integration to navigate user to local events or show on map
+- [x] Account and login capabilities
+- [x] User settings
+- [ ] Firebase item for vendors
+- [ ] Shopping/Grocery list
+- [ ] Filter by categories (plants, bakery, fruits, produce)
+- [ ] Calendar sort
+- [ ] List of saved farmers markets
 
 **Stretch Features**
 
