@@ -122,7 +122,7 @@ Refined wireframe after the Unit 7 session
 
 [Recorded with Kap for MacOS](https://getkap.co/)
 
-Milestone 2 Build Progress
-![Video Walkthrough](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/Milestone_2.gif "Milestone 2 Build Progress")
+### Milestone 2 Build Progress
+![Video Walkthrough](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/Milestone_2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
