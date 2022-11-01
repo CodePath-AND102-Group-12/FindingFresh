@@ -3,11 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh2/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1825" />
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh2/app/src/main/res/drawable/ic_shopping_list.xml" value="0.4345" />
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh2/app/src/main/res/layout/fragment_market_detail.xml" value="0.22745694022289767" />
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh2/app/src/main/res/layout/fragment_shopping_list.xml" value="0.22745694022289767" />
-        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh2/app/src/main/res/layout/shopping_list_item.xml" value="0.22745694022289767" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.189" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable/ic_launcher_background.xml" value="0.105" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.105" />
@@ -15,8 +10,9 @@
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/layout/layout.xml" value="0.1" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/menu/nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.2966485507246377" />
-        <entry key="app/src/main/res/layout/fragment_market_detail.xml" value="0.16388044579533942" />
+        <entry key="app/src/main/res/layout/fragment_market_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_market_listing.xml" value="0.16388044579533942" />
+        <entry key="app/src/main/res/layout/fragment_shopping_list.xml" value="0.34375" />
         <entry key="app/src/main/res/layout/fragment_vendor_detail.xml" value="0.16388044579533942" />
         <entry key="app/src/main/res/layout/market_layout.xml" value="0.20314083080040526" />
       </map>
