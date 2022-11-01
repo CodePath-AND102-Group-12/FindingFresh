@@ -14,7 +14,6 @@ An app to find local Farmer's Markets, their vendors, and how to reach them.
 
 ### App Evaluation
 
-[Evaluation of your app across the following attributes]
 - **Category:** Shopping/ event listing app
 - **Mobile:** Maps and location services can  find nearby farmer's markets. These features make the mobile format ideal for accessing information via mobile device rather than a website.
 - **Story:** The app will increase access to farmer's markets for shoppers and vendors through location services, product category sorting and a shopping list. It will be helpful for a wide range of people trying to access farmer's markets.
@@ -111,18 +110,18 @@ An app to find local Farmer's Markets, their vendors, and how to reach them.
 Initial wireframe developed during Unit 7 session
 <img src="https://github.com/CodePath-AND102-Group-12/Temp/blob/master/Group%2012%20Initial%20Wireframe.png?raw=true" width="600">
 
-### [BONUS] Digital Wireframes & Mockups
+## Digital Wireframes & Mockups
 Refined wireframe after the Unit 7 session
 <img src="https://github.com/CodePath-AND102-Group-12/Temp/blob/master/Group%2012%20Final%20Digital%20Wireframe.png?raw=true" width="600">
 
 [Also viewable on Figma](https://www.figma.com/community/file/1166378987628110358)
 
-### [BONUS] Interactive Prototype
+## Interactive Prototype
 <img src="https://github.com/CodePath-AND102-Group-12/Temp/blob/master/Group%2012%20Interactice%20Prototype.gif?raw=true" height="600">
 
 [Recorded with Kap for MacOS](https://getkap.co/)
 
-### Milestone 2 Build Progress
+## Milestone 2 Build Progress
 ![Video Walkthrough](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/Milestone_2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
