@@ -43,10 +43,12 @@ class ShoppingListRepository {
                         shoppingList.postValue(_shoppingList)
                     }catch (e: Exception){
                     }
+
                 }
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
+
             })
         }
     }

@@ -53,10 +53,8 @@ class ShoppingListFragment : Fragment() {
        // val shoppingItem: TextView = view.findViewById(R.id.ShoppingItemTV)
         val shoppingField: EditText = view.findViewById(R.id.yourItemET)
         val shoppingButton: Button = view.findViewById(R.id.submitItemBtn)
+        val deleteAllButton : Button = view.findViewById(R.id.deleteItemBtn)
 
-
-
-        //EventChangeListener()
 
         /** object for firebase authentication**/
         auth = FirebaseAuth.getInstance()
@@ -86,35 +84,31 @@ class ShoppingListFragment : Fragment() {
                 }
             }
         }
+
+        deleteAllButton.setOnClickListener {
+            if (uid != null) {
+                databaseReference.child(uid).removeValue()
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            Toast.makeText(activity, "Shopping List Deleted", Toast.LENGTH_SHORT)
+                                .show()
+                            shoppingField.setText("")
+                        } else {
+                            Toast.makeText(
+                                activity,
+                                "Unable to remove shopping list",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+            }
+        }
         return view
     }
 
 
-/*    private fun EventChangeListener() {
-        val auth = FirebaseAuth.getInstance().currentUser
-        var db = FirebaseFirestore.getInstance()
-        if (auth != null) {
-            db.collection("users")
-                .document(auth.uid)
-                .collection("Shopping List")
-                .document()
-                .addSnapshotListener(object : EventListener<DocumentSnapshot> {
-                    override fun onEvent(
-                        value: DocumentSnapshot?,
-                        error: FirebaseFirestoreException?
-                    ) {
-                        if (error != null){
-                            Log.e("Firestore Error", error.message.toString())
-                            return
-                        }
 
-
-                    }
-
-                })
-        }
-    }*/
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         shoppingRecyclerView = view.findViewById(R.id.shoppingRV)
@@ -126,6 +120,10 @@ class ShoppingListFragment : Fragment() {
             shoppingListAdapter.updateShoppinglist(it)
         })
     }
+
+
+
+
 
 
 }

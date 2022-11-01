@@ -10,35 +10,49 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/titleShoppingList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Shopping List"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/titleShoppingList"
+                android:layout_width="156dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:text="Shopping List"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/deleteItemBtn"
+                android:layout_width="84dp"
+                android:layout_height="51dp"
+                android:text="Clear List"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/shoppingRV"
             android:layout_width="409dp"
-            android:layout_height="588dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            android:layout_height="450dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleShoppingList"></androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout"></androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="404dp"
             android:layout_height="83dp"
-            android:layout_marginBottom="225dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shoppingRV">
@@ -46,7 +60,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ShoppingItemLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="274dp"
+                android:layout_width="270dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:hint="Enter your item here"
@@ -65,10 +79,10 @@
 
             <Button
                 android:id="@+id/submitItemBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Add" />
 
         </LinearLayout>
 
