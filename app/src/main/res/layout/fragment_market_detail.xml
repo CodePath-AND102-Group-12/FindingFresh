@@ -56,25 +56,26 @@
             app:layout_constraintStart_toStartOf="parent"
             android:text="Market Phone" />
 
+
         <Button
             android:id="@+id/favbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_width="154dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="4dp"
             android:text="Add to Favorites"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/marketImage" />
-
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/detailMap"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            tools:context=".MapsFragment"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/marketPhone" />
+            app:layout_constraintTop_toBottomOf="@+id/marketPhone"
+            tools:context=".MapsFragment" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
