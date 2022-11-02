@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/hero_image" />
+            app:srcCompat="@drawable/logo_new" />
         <!-- Hero Image from Job illustrations by Storyset: https://storyset.com/job-->
 
         <com.google.android.material.textfield.TextInputLayout
