@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.SearchView
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -34,6 +35,7 @@ import kotlinx.coroutines.launch
 class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
     private lateinit var featuredMarketListingAdapter: FeaturedMarketListingAdapter
     private lateinit var marketList: List<Market>
+    private lateinit var allMarketListingAdapter: MarketListingAdapter
 
     private val viewModel: FreshViewModel by activityViewModels()
 
@@ -56,13 +58,13 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
         val firestore = FirebaseFirestore.getInstance()
         val docRef = firestore.collection("farms")
         docRef.get().addOnSuccessListener { documents ->
-            val farmsData = mutableListOf<Market>()
+            val farmsData = ArrayList<Market>()
             for (document in documents) {
                 val farm = document.toObject(Market::class.java)
                 farmsData.add(farm)
             }
             println(farmsData[0].name)
-            val allMarketListingAdapter = MarketListingAdapter(
+            allMarketListingAdapter = MarketListingAdapter(
                 farmsData,
                 requireContext(),
                 this
@@ -96,6 +98,20 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
                 spinner.adapter = adapter
             }
         }
+
+        val searchViewField = view.findViewById<SearchView>(R.id.searchViewField)
+
+        searchViewField.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                allMarketListingAdapter.filter.filter(query)
+                return false
+            }
+
+        })
 
 
         return view

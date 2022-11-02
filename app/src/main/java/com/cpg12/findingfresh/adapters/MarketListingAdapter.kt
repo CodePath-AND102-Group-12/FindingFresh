@@ -4,22 +4,26 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.cpg12.findingfresh.GlideApp
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.objects.Market
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
+import java.util.*
 
 
-class MarketListingAdapter(private val marketList: List<Market>,
+class MarketListingAdapter(private var marketList: ArrayList<Market>,
                            private val context: Context,
                            private val listener: ClickListener
                            )
-    :RecyclerView.Adapter<MarketListingAdapter.ViewHolder>() {
+    :RecyclerView.Adapter<MarketListingAdapter.ViewHolder>(), Filterable {
+
+    var copyMarketList = marketList
+    var filterList = ArrayList<Market>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -65,5 +69,33 @@ class MarketListingAdapter(private val marketList: List<Market>,
 
     override fun getItemCount(): Int {
         return marketList.size
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    filterList = copyMarketList as ArrayList<Market>
+                } else {
+                    val resultList = ArrayList<Market>()
+                    for (row in marketList) {
+                        if (row.name!!.lowercase().contains(charSearch.lowercase())) {
+                            resultList.add(row)
+                        }
+                    }
+                    filterList = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = filterList
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+//                filterList = results?.values as ArrayList<Market>
+                marketList = filterList
+                notifyDataSetChanged()
+            }
+        }
     }
 }
