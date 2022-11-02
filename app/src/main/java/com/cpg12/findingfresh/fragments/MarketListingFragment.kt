@@ -19,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.cpg12.findingfresh.FreshViewModel
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.adapters.FeaturedMarketListingAdapter
@@ -70,7 +71,7 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
                 requireContext(),
                 this
             )
-            val allMarketListLayoutManager = GridLayoutManager(context, 2)
+            val allMarketListLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
             val allMarketListRecyclerView = view.findViewById<RecyclerView>(R.id.allMarketsRecyclerView)
             allMarketListRecyclerView.adapter = allMarketListingAdapter
             allMarketListRecyclerView.layoutManager = allMarketListLayoutManager

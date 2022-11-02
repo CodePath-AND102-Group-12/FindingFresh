@@ -11,8 +11,6 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp">
 
-    <!-- maybe market image could relate to category? -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,12 +37,6 @@
                 android:textSize="20sp"
                 android:layout_marginBottom="4dp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/marketCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Market Category" />
 
         </LinearLayout>
     </LinearLayout>

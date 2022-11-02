@@ -38,11 +38,9 @@ class MarketListingAdapter(private var marketList: ArrayList<Markets>,
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var marketName: TextView
-        var marketCategory: TextView
         var marketImage: ImageView
         init {
             marketName = itemView.findViewById(R.id.marketName)
-            marketCategory = itemView.findViewById(R.id.marketCategory)
             marketImage = itemView.findViewById(R.id.marketImage)
             itemView.setOnClickListener(this)
         }
