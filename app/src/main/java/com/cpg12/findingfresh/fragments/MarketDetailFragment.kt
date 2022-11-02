@@ -21,6 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.chip.Chip
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -42,6 +43,8 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         marketImage = view.findViewById(R.id.marketImage)
         val marketName: TextView = view.findViewById(R.id.marketName)
         val marketAddress: TextView = view.findViewById(R.id.marketAddress)
+        val marketHours: TextView = view.findViewById(R.id.marketHours)
+        val marketDescription: TextView = view.findViewById(R.id.marketDescription)
         val favbtn = view.findViewById<Button>(R.id.favbtn)
 
         // create market object based on the data array
@@ -50,6 +53,36 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         // use that data to display in the fragment
         marketName.text = marketDetail?.marketName
         marketAddress.text = marketDetail?.marketLocation
+        marketHours.text = "${marketDetail?.marketOpenTime} to ${marketDetail?.marketCloseTime}"
+        marketDescription.text = marketDetail?.marketDescription
+
+        if (marketDetail?.sunday == true) {
+            view.findViewById<Chip>(R.id.sunday).visibility = View.VISIBLE
+        }
+
+        if (marketDetail?.monday == true) {
+            view.findViewById<Chip>(R.id.monday).visibility = View.VISIBLE
+        }
+
+        if (marketDetail?.tuesday == true) {
+            view.findViewById<Chip>(R.id.tuesday).visibility = View.VISIBLE
+        }
+
+        if (marketDetail?.wednesday == true) {
+            view.findViewById<Chip>(R.id.wednesday).visibility = View.VISIBLE
+        }
+
+        if (marketDetail?.thursday == true) {
+            view.findViewById<Chip>(R.id.thursday).visibility = View.VISIBLE
+        }
+
+        if (marketDetail?.friday == true) {
+            view.findViewById<Chip>(R.id.friday).visibility = View.VISIBLE
+        }
+
+        if (marketDetail?.saturday == true) {
+            view.findViewById<Chip>(R.id.saturday).visibility = View.VISIBLE
+        }
 
         val supportMapFragment =
             childFragmentManager.findFragmentById(R.id.detailMap) as SupportMapFragment?

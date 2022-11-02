@@ -28,23 +28,137 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/marketAddress"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Market Address" />
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_directions" />
+
+            <TextView
+                android:id="@+id/marketAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Market Address" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/marketDays"
+            android:id="@+id/marketDaysHeader"
+            android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Market Days" />
+            android:text="Days Open"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/daysOfWeekChipGroup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/daysChipLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunday"
+                android:id="@+id/sunday"
+                android:clickable="false"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday"
+                android:id="@+id/monday"
+                android:clickable="false"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuesday"
+                android:id="@+id/tuesday"
+                android:clickable="false"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wednesday"
+                android:id="@+id/wednesday"
+                android:clickable="false"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thursday"
+                android:id="@+id/thursday"
+                android:clickable="false"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friday"
+                android:id="@+id/friday"
+                android:clickable="false"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:id="@+id/saturday"
+                android:clickable="false"
+                />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/marketHoursHeader"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hours"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/marketHours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Market Hours" />
+
+        <TextView
+            android:id="@+id/marketDescriptionHeader"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/marketDescription"
