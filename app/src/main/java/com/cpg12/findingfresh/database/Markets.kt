@@ -1,5 +1,6 @@
 package com.cpg12.findingfresh.database
 
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.GeoPoint
 import java.lang.ref.Reference
 
@@ -8,14 +9,18 @@ data class Markets(
     var marketName : String ? = null,
     var marketLocation : String ? = null,
     var marketEmail : String ? = null,
-    var marketContactName: String ? = null,
-    var marketCategory: String ? = null,
     var marketDescription: String ? = null,
     //TODO: using a datetime object instead of string?
-    var marketOpenDate: String ? = null,
     var marketOpenTime: String ? = null,
-    var marketCloseDate: String ? = null,
-    var marketCloseTime: String ? = null
+    var marketCloseTime: String ? = null,
+    var image: DocumentReference ? = null,
+    var sunday: Boolean ? = null,
+    var monday: Boolean ? = null,
+    var tuesday: Boolean ? = null,
+    var wednesday: Boolean ? = null,
+    var thursday: Boolean ? = null,
+    var friday: Boolean ? = null,
+    var saturday: Boolean ? = null,
 
     // these are all that is currently kept in Firestore
 //    var address: String ? = null,

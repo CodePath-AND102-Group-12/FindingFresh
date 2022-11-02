@@ -57,46 +57,6 @@ class AddMarketActivity : AppCompatActivity() {
         }
 
         // TODO: create a function to house the repetitive portion
-        // Clicking on date input launches a date picker
-        val marketOpenDateET = findViewById<EditText>(R.id.marketOpenDateET)
-
-        marketOpenDateET.setOnClickListener {
-            val datePicker: MaterialDatePicker<Long> = MaterialDatePicker
-                .Builder
-                .datePicker()
-                .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
-                .setTitleText("Select market open date")
-                .build()
-            datePicker.show(supportFragmentManager, "DATE_PICKER")
-
-            // TODO: fix the date returned, at least for my timezone (Eastern) it is returned the day before selected date
-            datePicker.addOnPositiveButtonClickListener {
-                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                val date = sdf.format(it)
-                marketOpenDateET.setText(date)
-            }
-        }
-
-        val marketCloseDateET = findViewById<EditText>(R.id.marketCloseDateET)
-
-        marketCloseDateET.setOnClickListener {
-            val datePicker: MaterialDatePicker<Long> = MaterialDatePicker
-                .Builder
-                .datePicker()
-                .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
-                .setTitleText("Select market close date")
-                .build()
-            datePicker.show(supportFragmentManager, "DATE_PICKER")
-
-            // TODO: fix the date returned, at least for my timezone (Eastern) it is returned the day before selected date
-            datePicker.addOnPositiveButtonClickListener {
-                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                val date = sdf.format(it)
-                marketCloseDateET.setText(date)
-            }
-        }
-
-        // TODO: create a function to house the repetitive portion
         // Clicking on time input launches a time picker
         val marketStartTimeET = findViewById<EditText>(R.id.marketStartTimeET)
 
@@ -155,13 +115,9 @@ class AddMarketActivity : AppCompatActivity() {
             val marketName = binding.marketNameET.text.toString()
             val marketLocation = binding.marketLocationET.text.toString()
             val marketEmail = binding.marketEmailET.text.toString()
-            val marketContactName = binding.marketContactNameET.text.toString()
-            val marketCategory = binding.marketCategoryET.text.toString()
             val marketDescription = binding.marketDescriptionET.text.toString()
             //TODO: using a datetime object instead of string?
-            val marketOpenDate = binding.marketOpenDateET.text.toString()
             val marketStartTime = binding.marketStartTimeET.text.toString()
-            val marketCloseDate = binding.marketCloseDateET.text.toString()
             val marketCloseTime = binding.marketCloseTimeET.text.toString()
 
             /** create instance of market class**/
@@ -169,12 +125,8 @@ class AddMarketActivity : AppCompatActivity() {
                 marketName,
                 marketLocation,
                 marketEmail,
-                marketContactName,
-                marketCategory,
                 marketDescription,
-                marketOpenDate,
                 marketStartTime,
-                marketCloseDate,
                 marketCloseTime)
 
             /** Creates the entity(child) into the node based on the market name**/
