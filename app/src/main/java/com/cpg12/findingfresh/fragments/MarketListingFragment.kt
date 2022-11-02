@@ -24,6 +24,7 @@ import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.adapters.FeaturedMarketListingAdapter
 import com.cpg12.findingfresh.adapters.MarketListingAdapter
 import com.cpg12.findingfresh.database.MarketFetcher
+import com.cpg12.findingfresh.database.Markets
 import com.cpg12.findingfresh.objects.Market
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,7 +35,7 @@ import kotlinx.coroutines.launch
 
 class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
     private lateinit var featuredMarketListingAdapter: FeaturedMarketListingAdapter
-    private lateinit var marketList: List<Market>
+    private lateinit var marketList: List<Markets>
     private lateinit var allMarketListingAdapter: MarketListingAdapter
 
     private val viewModel: FreshViewModel by activityViewModels()
@@ -58,12 +59,12 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
         val firestore = FirebaseFirestore.getInstance()
         val docRef = firestore.collection("farms")
         docRef.get().addOnSuccessListener { documents ->
-            val farmsData = ArrayList<Market>()
+            val farmsData = ArrayList<Markets>()
             for (document in documents) {
-                val farm = document.toObject(Market::class.java)
+                val farm = document.toObject(Markets::class.java)
                 farmsData.add(farm)
             }
-            println(farmsData[0].name)
+            println(farmsData[0].marketName)
             allMarketListingAdapter = MarketListingAdapter(
                 farmsData,
                 requireContext(),
@@ -124,7 +125,7 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
         }
     }
 
-    override fun gotoMarketDetail(position: Int, marketData: Market) {
+    override fun gotoMarketDetail(position: Int, marketData: Markets) {
         viewModel.setMarketData(marketData)
         val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
         transaction.replace(R.id.content, MarketDetailFragment())

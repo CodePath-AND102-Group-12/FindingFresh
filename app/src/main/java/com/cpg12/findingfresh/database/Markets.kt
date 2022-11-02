@@ -13,7 +13,7 @@ data class Markets(
     //TODO: using a datetime object instead of string?
     var marketOpenTime: String ? = null,
     var marketCloseTime: String ? = null,
-    var image: DocumentReference ? = null,
+//    var image: DocumentReference ? = null,
     var sunday: Boolean ? = null,
     var monday: Boolean ? = null,
     var tuesday: Boolean ? = null,

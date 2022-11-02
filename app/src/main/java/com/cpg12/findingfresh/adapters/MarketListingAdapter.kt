@@ -11,19 +11,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.GlideApp
 import com.cpg12.findingfresh.R
+import com.cpg12.findingfresh.database.Markets
 import com.cpg12.findingfresh.objects.Market
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
 
-class MarketListingAdapter(private var marketList: ArrayList<Market>,
+class MarketListingAdapter(private var marketList: ArrayList<Markets>,
                            private val context: Context,
                            private val listener: ClickListener
                            )
     :RecyclerView.Adapter<MarketListingAdapter.ViewHolder>(), Filterable {
 
     var copyMarketList = marketList
-    var filterList = ArrayList<Market>()
+    var filterList = ArrayList<Markets>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,7 +33,7 @@ class MarketListingAdapter(private var marketList: ArrayList<Market>,
     }
 
     interface ClickListener {
-        fun gotoMarketDetail(position: Int, marketData: Market)
+        fun gotoMarketDetail(position: Int, marketData: Markets)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -57,9 +58,8 @@ class MarketListingAdapter(private var marketList: ArrayList<Market>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val market = marketList[position]
 
-        holder.marketName.text = market.name
-        holder.marketCategory.text = market.category
-        val storageReference = FirebaseStorage.getInstance().getReference(market.image.toString())
+        holder.marketName.text = market.marketName
+        val storageReference = FirebaseStorage.getInstance().getReference(market.marketName.toString())
         storageReference.downloadUrl.addOnSuccessListener {
             GlideApp.with(context).load(it).into(holder.marketImage)
         }.addOnFailureListener {
@@ -76,11 +76,11 @@ class MarketListingAdapter(private var marketList: ArrayList<Market>,
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
-                    filterList = copyMarketList as ArrayList<Market>
+                    filterList = copyMarketList as ArrayList<Markets>
                 } else {
-                    val resultList = ArrayList<Market>()
+                    val resultList = ArrayList<Markets>()
                     for (row in marketList) {
-                        if (row.name!!.lowercase().contains(charSearch.lowercase())) {
+                        if (row.marketName!!.lowercase().contains(charSearch.lowercase())) {
                             resultList.add(row)
                         }
                     }
@@ -92,7 +92,7 @@ class MarketListingAdapter(private var marketList: ArrayList<Market>,
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//                filterList = results?.values as ArrayList<Market>
+//                filterList = results?.values as ArrayList<Markets>
                 marketList = filterList
                 notifyDataSetChanged()
             }

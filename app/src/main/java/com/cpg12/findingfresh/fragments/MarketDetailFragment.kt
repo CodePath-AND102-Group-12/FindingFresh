@@ -48,8 +48,8 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         val marketDetail = viewModel.market.value
 
         // use that data to display in the fragment
-        marketName.text = marketDetail?.name
-        marketAddress.text = marketDetail?.address
+        marketName.text = marketDetail?.marketName
+        marketAddress.text = marketDetail?.marketLocation
 
         val supportMapFragment =
             childFragmentManager.findFragmentById(R.id.detailMap) as SupportMapFragment?
@@ -60,7 +60,7 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         //TODO: set to proper address when Market Object is finalized
         marketAddress.setOnClickListener {
             val gmmIntentUri =
-                Uri.parse("google.navigation:q=${marketDetail?.address}")
+                Uri.parse("google.navigation:q=${marketDetail?.marketLocation}")
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
             startActivity(mapIntent)
@@ -73,10 +73,8 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
                     FirebaseFirestore.getInstance()
                         .collection("users").document(user.uid)
                         .collection("favorites").document()
-                val data = hashMapOf("name" to marketDetail?.name,
-                    "address" to marketDetail?.address,
-                    "category" to marketDetail?.category,
-                    "phone" to marketDetail?.phone)
+                val data = hashMapOf("name" to marketDetail?.marketName,
+                    "address" to marketDetail?.marketLocation,)
                 newFavorite.set(data)
             }
             else {
@@ -96,13 +94,13 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         val marketDetail = viewModel.market.value
 
         val geocoder = Geocoder(view?.context)
-        val geoCoderResults = geocoder.getFromLocationName(marketDetail?.address, 1)
+        val geoCoderResults = geocoder.getFromLocationName(marketDetail?.marketLocation, 1)
         val marketDetailLatitude = geoCoderResults.get(0).latitude
         val marketDetailLongitude = geoCoderResults.get(0).longitude
 
-        marketDetail?.location?.let {
+        marketDetail?.marketLocation?.let {
             val loc = LatLng (marketDetailLatitude, marketDetailLongitude)
-            mMap.addMarker(MarkerOptions().position(loc).title(marketDetail.name))
+            mMap.addMarker(MarkerOptions().position(loc).title(marketDetail.marketName))
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,12f))
             mMap.uiSettings.isZoomControlsEnabled = true
         }

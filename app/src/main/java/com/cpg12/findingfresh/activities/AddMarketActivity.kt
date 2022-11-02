@@ -6,17 +6,18 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.EditText
 import android.widget.Toast
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.database.Markets
 import com.cpg12.findingfresh.databinding.ActivityAddMarketBinding
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.text.SimpleDateFormat
@@ -58,7 +59,7 @@ class AddMarketActivity : AppCompatActivity() {
 
         // TODO: create a function to house the repetitive portion
         // Clicking on time input launches a time picker
-        val marketStartTimeET = findViewById<EditText>(R.id.marketStartTimeET)
+        val marketStartTimeET = findViewById<EditText>(R.id.marketOpenTimeET)
 
         marketStartTimeET.setOnClickListener {
             val timePicker: MaterialTimePicker = MaterialTimePicker
@@ -116,37 +117,68 @@ class AddMarketActivity : AppCompatActivity() {
             val marketLocation = binding.marketLocationET.text.toString()
             val marketEmail = binding.marketEmailET.text.toString()
             val marketDescription = binding.marketDescriptionET.text.toString()
-            //TODO: using a datetime object instead of string?
-            val marketStartTime = binding.marketStartTimeET.text.toString()
+            val marketOpenTime = binding.marketOpenTimeET.text.toString()
             val marketCloseTime = binding.marketCloseTimeET.text.toString()
+            val marketSunday = binding.sunday.isChecked
+            val marketMonday = binding.monday.isChecked
+            val marketTuesday = binding.tuesday.isChecked
+            val marketWednesday = binding.wednesday.isChecked
+            val marketThursday = binding.thursday.isChecked
+            val marketFriday = binding.friday.isChecked
+            val marketSaturday = binding.saturday.isChecked
 
             /** create instance of market class**/
-            val markets = Markets(
+            val newMarket = Markets(
                 marketName,
                 marketLocation,
                 marketEmail,
                 marketDescription,
-                marketStartTime,
-                marketCloseTime)
+                marketOpenTime,
+                marketCloseTime,
+                marketSunday,
+                marketMonday,
+                marketTuesday,
+                marketWednesday,
+                marketThursday,
+                marketFriday,
+                marketSaturday,
+            )
 
-            /** Creates the entity(child) into the node based on the market name**/
-            databaseReference.child(marketName).setValue(markets).addOnCompleteListener {
-                if (it.isSuccessful){
-                    uploadImage()
+//            /** Creates the entity(child) into the node based on the market name**/
+//            databaseReference.child(marketName).setValue(newMarket).addOnCompleteListener {
+//                if (it.isSuccessful){
+//                    uploadImage()
+//                    hideProgressBar()
+//                    Toast.makeText(this@AddMarketActivity,"Market Listing Successful",Toast.LENGTH_LONG).show()
+//
+//
+//                    /**Go back to main screen**/
+//                    val intent = Intent(this, MainActivity::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                    this.startActivity(intent)
+//
+//                }else{
+//                    hideProgressBar()
+//                    Toast.makeText(this@AddMarketActivity,"Failed to list your market",Toast.LENGTH_SHORT).show()
+//                }
+//            }
+
+            // Creates a document in Firestore with the given information
+            val firestore = FirebaseFirestore.getInstance()
+            val docRef = firestore.collection("farms")
+            docRef.add(newMarket)
+                .addOnSuccessListener { documentReference ->
+                    uploadImage(documentReference.id)
                     hideProgressBar()
-                    Toast.makeText(this@AddMarketActivity,"Market Listing Successful",Toast.LENGTH_LONG).show()
-
-
+                    Toast.makeText(this@AddMarketActivity,"$marketName Listing Successful",Toast.LENGTH_LONG).show()
                     /**Go back to main screen**/
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     this.startActivity(intent)
-
-                }else{
-                    hideProgressBar()
-                    Toast.makeText(this@AddMarketActivity,"Failed to list your market",Toast.LENGTH_SHORT).show()
                 }
-            }
+                .addOnFailureListener { e ->
+                    Log.w("NICS TAG", "Error adding document", e)
+                }
 
             /** temporary because no authentication implemented yet**/
 /*            if (uid != null){
@@ -191,7 +223,7 @@ class AddMarketActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImage() {
+    private fun uploadImage(marketDocumentId: String) {
         val marketName = binding.marketNameET.text.toString()
 
 
@@ -199,7 +231,7 @@ class AddMarketActivity : AppCompatActivity() {
         // storageReference = FirebaseStorage.getInstance().getReference("Markets/"+auth.currentUser?.uid)
 
         /** References where to store the image**/
-        storageReference = FirebaseStorage.getInstance().getReference("Markets/$marketName")
+        storageReference = FirebaseStorage.getInstance().getReference("Markets/$marketDocumentId")
 
         /** putFile() stores in firebase **/
         storageReference.putFile(imageUri).addOnSuccessListener {

@@ -3,6 +3,7 @@ package com.cpg12.findingfresh
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.cpg12.findingfresh.database.Markets
 import com.cpg12.findingfresh.objects.Market
 
 class FreshViewModel(): ViewModel() {
@@ -19,15 +20,15 @@ class FreshViewModel(): ViewModel() {
         _name.value = passName
     }
 
-    private var _market = MutableLiveData<Market>()
-    val market: LiveData<Market> = _market
-    fun setMarketData(passMarket: Market) {
+    private var _market = MutableLiveData<Markets>()
+    val market: LiveData<Markets> = _market
+    fun setMarketData(passMarket: Markets) {
         _market.value = passMarket
     }
 
-    private var _markets = MutableLiveData<List<Market>>()
-    val markets: LiveData<List<Market>> = _markets
-    fun setMarketListData(passMarkets: List<Market>) {
+    private var _markets = MutableLiveData<List<Markets>>()
+    val markets: LiveData<List<Markets>> = _markets
+    fun setMarketListData(passMarkets: List<Markets>) {
         _markets.value = passMarkets
     }
 }
