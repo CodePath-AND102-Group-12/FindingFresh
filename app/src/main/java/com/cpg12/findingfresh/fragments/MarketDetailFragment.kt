@@ -1,6 +1,7 @@
 package com.cpg12.findingfresh.fragments
 
 import android.content.Intent
+import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,17 +16,14 @@ import androidx.fragment.app.activityViewModels
 import com.cpg12.findingfresh.FreshViewModel
 import com.cpg12.findingfresh.R
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.CameraUpdateFactory.newLatLng
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
 
@@ -62,7 +60,7 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         //TODO: set to proper address when Market Object is finalized
         marketAddress.setOnClickListener {
             val gmmIntentUri =
-                Uri.parse("google.navigation:q=${marketDetail?.location?.latitude},${marketDetail?.location?.longitude}")
+                Uri.parse("google.navigation:q=${marketDetail?.address}")
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
             startActivity(mapIntent)
@@ -96,8 +94,14 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val marketDetail = viewModel.market.value
+
+        val geocoder = Geocoder(view?.context)
+        val geoCoderResults = geocoder.getFromLocationName(marketDetail?.address, 1)
+        val marketDetailLatitude = geoCoderResults.get(0).latitude
+        val marketDetailLongitude = geoCoderResults.get(0).longitude
+
         marketDetail?.location?.let {
-            val loc = LatLng (it.latitude, it.longitude)
+            val loc = LatLng (marketDetailLatitude, marketDetailLongitude)
             mMap.addMarker(MarkerOptions().position(loc).title(marketDetail.name))
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc,12f))
             mMap.uiSettings.isZoomControlsEnabled = true
