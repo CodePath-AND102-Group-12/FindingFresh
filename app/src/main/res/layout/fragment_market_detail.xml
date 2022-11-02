@@ -35,16 +35,22 @@
             android:text="Market Address" />
 
         <TextView
-            android:id="@+id/marketCategory"
+            android:id="@+id/marketDays"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Market Category" />
+            android:text="Market Days" />
 
         <TextView
-            android:id="@+id/marketPhone"
+            android:id="@+id/marketHours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Market Phone" />
+            android:text="Market Hours" />
+
+        <TextView
+            android:id="@+id/marketDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Market Description" />
 
         <Button
             android:id="@+id/favbtn"

@@ -44,8 +44,6 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         marketImage = view.findViewById(R.id.marketImage)
         val marketName: TextView = view.findViewById(R.id.marketName)
         val marketAddress: TextView = view.findViewById(R.id.marketAddress)
-        val marketCategory: TextView = view.findViewById(R.id.marketCategory)
-        val marketPhone: TextView = view.findViewById(R.id.marketPhone)
         val favbtn = view.findViewById<Button>(R.id.favbtn)
 
         // create market object based on the data array
@@ -54,8 +52,6 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         // use that data to display in the fragment
         marketName.text = marketDetail?.name
         marketAddress.text = marketDetail?.address
-        marketCategory.text = marketDetail?.category
-        marketPhone.text = marketDetail?.phone
 
         val supportMapFragment =
             childFragmentManager.findFragmentById(R.id.detailMap) as SupportMapFragment?
