@@ -6,24 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.cpg12.findingfresh.FreshViewModel
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.adapters.FavoriteMarketsAdapter
-import com.cpg12.findingfresh.adapters.MarketListingAdapter
 import com.cpg12.findingfresh.database.Markets
-import com.cpg12.findingfresh.objects.ShoppingListViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class FavoriteMarketsFragment : Fragment() {
+class FavoriteMarketsFragment : Fragment(), FavoriteMarketsAdapter.ClickListener {
     private lateinit var favoriteMarketsRV: RecyclerView
     private lateinit var favoriteMarketsAdapter: FavoriteMarketsAdapter
     private lateinit var favoriteMarketsList: ArrayList<Markets>
+    private val viewModel: FreshViewModel by activityViewModels()
+
+    // TODO: get rid of this TextView/myStringOfMarkets. On my emulator testing, if I remove the RV doesn't load
+    private lateinit var textView : TextView
+    private lateinit var myStringOfMarkets : StringBuilder
 
     /** Firebase object initialization **/
     private lateinit var auth : FirebaseAuth
@@ -38,8 +44,8 @@ class FavoriteMarketsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_favorite_markets, container, false)
 
         // TODO: get rid of this TextView/myStringOfMarkets. On my emulator testing, if I remove the RV doesn't load
-        val textView = view.findViewById<TextView>(R.id.myOnlyTV)
-        var myStringOfMarkets = StringBuilder()
+        textView = view.findViewById<TextView>(R.id.myOnlyTV)
+        myStringOfMarkets = StringBuilder()
 
         /** object for firebase authentication**/
         auth = FirebaseAuth.getInstance()
@@ -77,7 +83,7 @@ class FavoriteMarketsFragment : Fragment() {
                             val favoriteFarm = farm.toObject(Markets::class.java)
                             favoriteMarkets.add(favoriteFarm)
 
-                            myStringOfMarkets.append("\n\n${favoriteFarm.marketName}: ${favoriteFarm.marketLocation}")
+                            myStringOfMarkets.append("${favoriteFarm.marketName?.first()}: ${favoriteFarm.marketLocation?.first()}")
                         }
 
                         textView.setText(myStringOfMarkets)
@@ -86,7 +92,8 @@ class FavoriteMarketsFragment : Fragment() {
 
             favoriteMarketsAdapter = FavoriteMarketsAdapter(
                 favoriteMarkets,
-                requireContext()
+                requireContext(),
+                this
             )
             val favoriteMarketsLayoutManager = LinearLayoutManager(context)
             favoriteMarketsRV = view.findViewById<RecyclerView>(R.id.favoriteMarketsRV)
@@ -96,5 +103,15 @@ class FavoriteMarketsFragment : Fragment() {
 
 
         return view
+    }
+
+
+    override fun gotoMarketDetail(position: Int, marketData: Markets) {
+        viewModel.setMarketData(marketData)
+        val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.content, MarketDetailFragment())
+        transaction.addToBackStack(null)
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        transaction.commit()
     }
 }

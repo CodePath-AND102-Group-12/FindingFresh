@@ -23,6 +23,7 @@
             android:id="@+id/myOnlyTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:text="This is the Favorite Markets Fragment" />
 
         <androidx.recyclerview.widget.RecyclerView

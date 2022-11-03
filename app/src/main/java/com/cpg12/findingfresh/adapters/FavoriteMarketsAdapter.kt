@@ -1,24 +1,23 @@
 package com.cpg12.findingfresh.adapters
 
 import android.content.Context
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.GlideApp
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.database.Markets
+import com.cpg12.findingfresh.fragments.FavoriteMarketsFragment
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
 
 class FavoriteMarketsAdapter(private var marketList: ArrayList<Markets>,
-                           private val context: Context
+                             private val context: Context,
+                             private val listener: FavoriteMarketsFragment
 )
     :RecyclerView.Adapter<FavoriteMarketsAdapter.ViewHolder>() {
 
@@ -44,7 +43,7 @@ class FavoriteMarketsAdapter(private var marketList: ArrayList<Markets>,
             val position : Int = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 val marketData = marketList[position]
-//                listener.gotoMarketDetail(position, marketData)
+                listener.gotoMarketDetail(position, marketData)
             }
         }
     }
