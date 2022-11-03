@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Spinner
@@ -99,6 +100,22 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
                 // Apply the adapter to the spinner
                 spinner.adapter = adapter
             }
+        }
+        // sets the default selection, without this the app crashes when the onItemSelectedListener is set
+        spinner.setSelection(0, false)
+
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, spinnerView: View?, spinnerPosition: Int, spinnerId: Long) {
+                var spinnerSelection = spinner.selectedItem.toString()
+                println("Spinner Selection: $spinnerSelection")
+
+                allMarketListingAdapter.filterSpinner().filter(spinnerSelection)
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                // required member
+            }
+
         }
 
         val searchViewField = view.findViewById<SearchView>(R.id.searchViewField)
