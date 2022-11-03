@@ -1,5 +1,6 @@
 package com.cpg12.findingfresh.database
 
+import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.GeoPoint
 import java.lang.ref.Reference
@@ -13,7 +14,6 @@ data class Markets(
     //TODO: using a datetime object instead of string?
     var marketOpenTime: String ? = null,
     var marketCloseTime: String ? = null,
-//    var image: DocumentReference ? = null,
     var sunday: Boolean ? = null,
     var monday: Boolean ? = null,
     var tuesday: Boolean ? = null,
@@ -21,6 +21,8 @@ data class Markets(
     var thursday: Boolean ? = null,
     var friday: Boolean ? = null,
     var saturday: Boolean ? = null,
+
+    @DocumentId val DocumentId: String ? = null,
 
     // these are all that is currently kept in Firestore
 //    var address: String ? = null,

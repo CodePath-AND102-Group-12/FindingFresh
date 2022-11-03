@@ -57,7 +57,8 @@ class MarketListingAdapter(private var marketList: ArrayList<Markets>,
         val market = marketList[position]
 
         holder.marketName.text = market.marketName
-        val storageReference = FirebaseStorage.getInstance().getReference(market.marketName.toString())
+        val storageReference = FirebaseStorage.getInstance().reference.child("Markets/${market.DocumentId}")
+        // val storageReference = FirebaseStorage.getInstance().getReference(market.marketName.toString())
         storageReference.downloadUrl.addOnSuccessListener {
             GlideApp.with(context).load(it).into(holder.marketImage)
         }.addOnFailureListener {
