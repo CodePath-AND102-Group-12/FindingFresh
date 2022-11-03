@@ -48,7 +48,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             for (document in documents) {
                 val farm = document.toObject(Markets::class.java)
                 farmsData.add(farm)
-                println("Added ${farm.marketName} to farmsdata list")
                 val geoCoderResults = geocoder.getFromLocationName(farm?.marketLocation, 1)
                 val marketDetailLatitude = geoCoderResults.get(0).latitude
                 val marketDetailLongitude = geoCoderResults.get(0).longitude
@@ -56,7 +55,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 farm?.marketLocation?.let {
                     val loc = LatLng (marketDetailLatitude, marketDetailLongitude)
                     mMap.addMarker(MarkerOptions().position(loc).title(farm.marketName))
-                    println("Market ${farm.marketName} added to map")
                 }
             }
 
