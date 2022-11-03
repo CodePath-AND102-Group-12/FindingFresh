@@ -40,6 +40,10 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
     private lateinit var marketList: List<Markets>
     private lateinit var allMarketListingAdapter: MarketListingAdapter
 
+    // to help prevent loading of spinner from crashing app, based on: https://stackoverflow.com/a/7660052
+    private var spinnerCount = 0
+    private val spinnerEvents = 1
+
     private val viewModel: FreshViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,15 +105,18 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
                 spinner.adapter = adapter
             }
         }
-        // sets the default selection, without this the app crashes when the onItemSelectedListener is set
-        spinner.setSelection(0, false)
+
 
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, spinnerView: View?, spinnerPosition: Int, spinnerId: Long) {
-                var spinnerSelection = spinner.selectedItem.toString()
-                println("Spinner Selection: $spinnerSelection")
+                if (spinnerCount < spinnerEvents) {
+                    spinnerCount++
+                } else {
+                    var spinnerSelection = spinner.selectedItem.toString()
+                    println("Spinner Selection: $spinnerSelection")
 
-                allMarketListingAdapter.filterSpinner().filter(spinnerSelection)
+                    allMarketListingAdapter.filterSpinner().filter(spinnerSelection)
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
