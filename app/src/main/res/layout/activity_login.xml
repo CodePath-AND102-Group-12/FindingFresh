@@ -20,6 +20,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Hero Image from Job illustrations by Storyset: https://storyset.com/job-->
+
         <ImageView
             android:id="@+id/heroImage"
             android:layout_width="match_parent"
@@ -27,7 +29,6 @@
             android:adjustViewBounds="true"
             android:scaleType="fitStart"
             app:srcCompat="@drawable/logo_new" />
-        <!-- Hero Image from Job illustrations by Storyset: https://storyset.com/job-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailLayout"
