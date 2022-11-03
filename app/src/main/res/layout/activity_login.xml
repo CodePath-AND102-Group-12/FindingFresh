@@ -2,13 +2,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical">
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
 
         <ImageView
             android:id="@+id/heroImage"
@@ -22,8 +26,6 @@
             android:id="@+id/emailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:hint="Email Address"
             app:startIconDrawable="@drawable/ic_email"
             app:startIconTint="?attr/colorPrimary"
@@ -43,8 +45,6 @@
             android:id="@+id/passwordLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             app:endIconMode="password_toggle"
             android:hint="Password"
             app:startIconDrawable="@drawable/ic_lock"
@@ -79,12 +79,35 @@
             android:textColor="#19A974"
             android:layout_gravity="center_horizontal"/>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Your Market!"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Are you an organizer for a farmers market that isn't listed? \n\nWe would love to have you, scroll down to add your market to Finding Fresh!" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
         <Button
             android:id="@+id/addMarketBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="add market" />
+            android:text="Add Market" />
 
 
     </LinearLayout>
