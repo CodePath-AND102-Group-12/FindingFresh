@@ -33,8 +33,8 @@ class SettingsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
 
-        val Email = view.findViewById(R.id.user_Tv) as TextView
-        val UserID = view.findViewById(R.id.email_Tv) as TextView
+        val Email = view.findViewById(R.id.usernameTextView) as TextView
+        val UserID = view.findViewById(R.id.emailTextView) as TextView
 
         /** Assigns the textviews to the email and UID**/
         Email.text = uID
