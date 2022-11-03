@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cpg12.findingfresh.R
+import com.cpg12.findingfresh.activities.MainActivity
 import com.cpg12.findingfresh.database.Markets
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -63,7 +64,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             val lastMarketGCR = geocoder.getFromLocationName(lastMarket?.marketLocation, 1)
             val lastMarketLatLng = LatLng(lastMarketGCR.get(0).latitude, lastMarketGCR.get(0).longitude)
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastMarketLatLng,10f))
+
+            // TODO: this is a basic notification, would be nice to check for markets in the map and if the date is tomorrow, display it here
+            var myNotification = (activity as MainActivity?)!!.createNotification("Your market is tomorrow!", "Don't miss out on ${farmsData.get(farmsData.size - 1).marketName} tomorrow")
         }
+
 
         mMap.uiSettings.isZoomControlsEnabled = true
     }
