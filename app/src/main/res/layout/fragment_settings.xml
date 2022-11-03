@@ -18,7 +18,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/userIcon"/>
 
         <TextView
             android:id="@+id/usernameLabel"
@@ -30,6 +30,15 @@
             app:layout_constraintEnd_toStartOf="@+id/usernameTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/settingsHeader" />
+
+        <TextView
+            android:id="@+id/usernameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/usernameLabel"
+            app:layout_constraintTop_toTopOf="@id/usernameLabel" />
 
         <TextView
             android:id="@+id/emailLabel"
@@ -50,6 +59,18 @@
             app:layout_constraintStart_toEndOf="@id/emailLabel"
             app:layout_constraintTop_toTopOf="@id/emailLabel"/>
 
+        <ImageView
+            android:id="@+id/userIcon"
+            android:layout_width="200dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_account"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="?attr/colorPrimary" />
+
         <Button
             android:id="@+id/logoutBtn"
             android:layout_width="wrap_content"
@@ -60,15 +81,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
-
-        <TextView
-            android:id="@+id/usernameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/usernameLabel"
-            app:layout_constraintTop_toTopOf="@id/usernameLabel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
