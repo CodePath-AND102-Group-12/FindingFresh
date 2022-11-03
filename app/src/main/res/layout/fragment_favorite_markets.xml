@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cpg12.findingfresh.fragments.CalendarFragment">
+    tools:context="com.cpg12.findingfresh.fragments.FavoriteMarketsFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="This is the Calendar Fragment" />
+        android:text="This is the Favorite Markets Fragment" />
 
 </FrameLayout>

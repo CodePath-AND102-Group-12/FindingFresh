@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val marketListFragment: Fragment = MarketListingFragment()
     private val mapFragment: Fragment = MapFragment()
     private val shoppingListFragment: Fragment = ShoppingListFragment()
-    private val calendarFragment: Fragment = CalendarFragment()
+    private val favoriteMarketsFragment: Fragment = FavoriteMarketsFragment()
     private val settingsFragment: Fragment = SettingsFragment()
 
 
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_goto_markets -> fragment = marketListFragment
                 R.id.action_goto_map -> fragment = mapFragment
                 R.id.action_goto_shopping_list -> fragment = shoppingListFragment
-                R.id.action_goto_calendar -> fragment = calendarFragment
+                R.id.action_goto_favorite_markets -> fragment = favoriteMarketsFragment
                 R.id.action_goto_settings -> fragment = settingsFragment
             }
             replaceFragment(fragment)

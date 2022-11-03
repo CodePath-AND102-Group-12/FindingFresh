@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.cpg12.findingfresh.R
 
-class CalendarFragment : Fragment() {
+class FavoriteMarketsFragment : Fragment() {
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_calendar, container, false)
+        val view = inflater.inflate(R.layout.fragment_favorite_markets, container, false)
         return view
     }
 }

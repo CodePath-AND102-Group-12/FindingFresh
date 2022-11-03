@@ -11,11 +11,11 @@
     <item
         android:id="@+id/action_goto_shopping_list"
         android:title="My List"
-        android:icon="@drawable/ic_shopping_list"/>
+        android:icon="@drawable/ic_basket"/>
     <item
-        android:id="@+id/action_goto_calendar"
-        android:title="Calendar"
-        android:icon="@drawable/ic_calendar"/>
+        android:id="@+id/action_goto_favorite_markets"
+        android:title="My Markets"
+        android:icon="@drawable/ic_storefront"/>
     <item
         android:id="@+id/action_goto_settings"
         android:title="Settings"
