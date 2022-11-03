@@ -1,34 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.RegisterActivity">
 
-    <TextView
-        android:id="@+id/ListYourMarketsEverybody"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Register "
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_gravity="center_vertical">
 
-        <!-- Hero Image from Job illustrations by Storyset: https://storyset.com/job-->
+        <ImageView
+            android:id="@+id/heroImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/logo_new" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailLayout"
@@ -37,6 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            app:startIconDrawable="@drawable/ic_email"
+            app:startIconTint="?attr/colorPrimary"
             android:hint="Email Address"
             android:textColorHint="?attr/colorPrimary">
 
@@ -58,6 +50,9 @@
             android:layout_marginEnd="16dp"
             app:endIconMode="password_toggle"
             android:hint="Password"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:startIconTint="?attr/colorPrimary"
+            app:endIconTint="?attr/colorPrimary"
             android:textColorHint="?attr/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -77,6 +72,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:hint="Confirm Password"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:startIconTint="?attr/colorPrimary"
+            app:endIconTint="?attr/colorPrimary"
             app:endIconMode="password_toggle"
             android:textColorHint="?attr/colorPrimary">
 
@@ -101,4 +99,4 @@
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
