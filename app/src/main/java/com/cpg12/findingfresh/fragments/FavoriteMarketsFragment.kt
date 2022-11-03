@@ -56,33 +56,35 @@ class FavoriteMarketsFragment : Fragment() {
 
         myStringOfMarkets.append("The current user has the following markets in their favorites:")
 
+        val favoritesAsString = ArrayList<String>()
+        val favoriteMarkets = ArrayList<Markets>()
+
         loggedInUserFavorites.get().addOnSuccessListener { documents ->
-            val favoriteMarkets = ArrayList<String>()
+
+            // first iterate through the user to determine what has been added as favorites, add to the favoritesAsString list
             for (document in documents) {
-                val doc = loggedInUserFavorites.document(document.id)
-                favoriteMarkets.add(doc.get().toString())
                 val name = document.data.get("name")
-                val address = document.data.get("address")
-
-                myStringOfMarkets.append("\n\n$name: $address")
-
-                println("$uid favorite markets: ${document.data.get("name")}")
+                favoritesAsString.add(name.toString())
             }
 
-            textView.setText(myStringOfMarkets)
-//            allMarketListingAdapter = MarketListingAdapter(
-//                favoriteMarkets,
-//                requireContext(),
-//                this
-//            )
-//            val allMarketListLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-//            val allMarketListRecyclerView = view.findViewById<RecyclerView>(R.id.allMarketsRecyclerView)
-//            allMarketListRecyclerView.adapter = allMarketListingAdapter
-//            allMarketListRecyclerView.layoutManager = allMarketListLayoutManager
+            // then using the favoritesAsString list, query Firestore for matching results and add matches to the favoriteMarkets list
+            for (each in favoritesAsString) {
+                db.collection("farms")
+                    .whereEqualTo("marketName", each)
+                    .get()
+                    .addOnSuccessListener { farms ->
+                        // with each one, create the Markets object that we can use later to work with an adapter
+                        for (farm in farms) {
+                            val favoriteFarm = farm.toObject(Markets::class.java)
+                            favoriteMarkets.add(favoriteFarm)
+
+                            myStringOfMarkets.append("\n\n${favoriteFarm.marketName}: ${favoriteFarm.marketLocation}")
+                        }
+
+                        textView.setText(myStringOfMarkets)
+                    }
+            }
         }
-
-
-
 
 
         return view
