@@ -4,6 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- List of days for All Markets filter by day -->
     <string-array name="daysOfWeek">
+        <item>All</item>
         <item>Sunday</item>
         <item>Monday</item>
         <item>Tuesday</item>
