@@ -5,10 +5,30 @@
     android:layout_height="match_parent"
     tools:context="com.cpg12.findingfresh.fragments.FavoriteMarketsFragment">
 
-    <TextView
-        android:id="@+id/myOnlyTV"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="This is the Favorite Markets Fragment" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/favoritesHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Favorite Markets"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/myOnlyTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is the Favorite Markets Fragment" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favoriteMarketsRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </FrameLayout>
