@@ -58,8 +58,8 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         // use that data to display in the fragment
         marketName.text = marketDetail?.marketName
         marketAddress.text = marketDetail?.marketLocation
-        marketEmail.text = marketDetail?.marketEmail
         marketHours.text = "${marketDetail?.marketOpenTime} to ${marketDetail?.marketCloseTime}"
+        marketEmail.text = marketDetail?.marketEmail
         marketDescription.text = marketDetail?.marketDescription
 
         if (marketDetail?.sunday == true) {
@@ -88,6 +88,28 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
 
         if (marketDetail?.saturday == true) {
             view.findViewById<Chip>(R.id.saturday).visibility = View.VISIBLE
+        }
+
+        marketEmail.setOnClickListener {
+            val emailTo = marketDetail?.marketEmail
+            val subject = "Finding Fresh Inquiry"
+            val body = "\n" +
+                    "\n" +
+                    "------\n" +
+                    "I found your farmers market using Finding Fresh!"
+
+            val selectorIntent = Intent(Intent.ACTION_SENDTO)
+            val urlString = "mailto:" + Uri.encode(emailTo) + "?subject=" + Uri.encode(subject) + "&body=" + Uri.encode(body)
+            selectorIntent.data = Uri.parse(urlString)
+
+            val emailIntent = Intent(Intent.ACTION_MAIN)
+            emailIntent.addCategory(Intent.CATEGORY_APP_EMAIL)
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(emailTo))
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject)
+            emailIntent.putExtra(Intent.EXTRA_TEXT, body)
+            emailIntent.selector = selectorIntent
+
+            startActivity(Intent.createChooser(emailIntent,"Email"))
         }
 
 
