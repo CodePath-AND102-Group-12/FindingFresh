@@ -20,11 +20,26 @@ class LogInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
+        // if a Firebase session already exists, skip to Main activity
+        if (FirebaseAuth.getInstance().uid != null) {
+
+            // set the user and email to intent to the Main activity
+            val uID = FirebaseAuth.getInstance().currentUser!!.uid
+            val emailID = FirebaseAuth.getInstance().currentUser!!.email
+
+            val intent = Intent(this@LogInActivity, MainActivity::class.java)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("user_id", uID)
+            intent.putExtra("email_id", emailID)
+            startActivity(intent)
+            finish()
+        }
+
         val emailET = findViewById<EditText>(R.id.emailET)
         val passwordET = findViewById<EditText>(R.id.passwordInputET)
         val loginBtn = findViewById<Button>(R.id.loginButton)
         val registerBtn = findViewById<Button>(R.id.createAccountBtn)
-
 
 
         loginBtn.setOnClickListener{
