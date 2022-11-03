@@ -2,6 +2,7 @@ package com.cpg12.findingfresh.fragments
 
 import android.content.Intent
 import android.location.Geocoder
+import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.cpg12.findingfresh.FreshViewModel
+import com.cpg12.findingfresh.GlideApp
 import com.cpg12.findingfresh.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -25,6 +27,7 @@ import com.google.android.material.chip.Chip
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
 
@@ -43,8 +46,10 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         marketImage = view.findViewById(R.id.marketImage)
         val marketName: TextView = view.findViewById(R.id.marketName)
         val marketAddress: TextView = view.findViewById(R.id.marketAddress)
+        val marketEmail: TextView = view.findViewById(R.id.marketEmail)
         val marketHours: TextView = view.findViewById(R.id.marketHours)
         val marketDescription: TextView = view.findViewById(R.id.marketDescription)
+        val marketImage: ImageView = view.findViewById(R.id.marketImage)
         val favbtn = view.findViewById<Button>(R.id.favbtn)
 
         // create market object based on the data array
@@ -53,6 +58,7 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         // use that data to display in the fragment
         marketName.text = marketDetail?.marketName
         marketAddress.text = marketDetail?.marketLocation
+        marketEmail.text = marketDetail?.marketEmail
         marketHours.text = "${marketDetail?.marketOpenTime} to ${marketDetail?.marketCloseTime}"
         marketDescription.text = marketDetail?.marketDescription
 
@@ -83,6 +89,16 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         if (marketDetail?.saturday == true) {
             view.findViewById<Chip>(R.id.saturday).visibility = View.VISIBLE
         }
+
+
+        val storageReference = FirebaseStorage.getInstance().reference.child("Markets/${marketDetail?.DocumentId}")
+        // val storageReference = FirebaseStorage.getInstance().getReference(market.marketName.toString())
+        storageReference.downloadUrl.addOnSuccessListener {
+            GlideApp.with(this).load(it).into(marketImage)
+        }.addOnFailureListener {
+
+        }
+
 
         val supportMapFragment =
             childFragmentManager.findFragmentById(R.id.detailMap) as SupportMapFragment?
