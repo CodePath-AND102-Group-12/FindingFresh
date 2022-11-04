@@ -16,6 +16,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
+import java.time.DayOfWeek
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -44,6 +47,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val docRef = firestore.collection("farms")
         val farmsData = ArrayList<Markets>()
 
+        // helpers to determine whether to issue notificaiton
+        var marketToday = false
+        var marketsForToday = 0
+        lateinit var marketToVisit : Markets
+        val today =
+            Calendar.getInstance().getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())
+                ?.lowercase()
+
         docRef.get().addOnSuccessListener { documents ->
             // add each of the markets to the list and create map markers for them
             for (document in documents) {
@@ -53,7 +64,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val marketDetailLatitude = geoCoderResults.get(0).latitude
                 val marketDetailLongitude = geoCoderResults.get(0).longitude
 
-                farm?.marketLocation?.let {
+                if(checkDate(today, farm)) {
+                    marketToVisit = farm
+                    marketToday = true
+                    marketsForToday++
+                }
+
+                farm.marketLocation?.let {
                     val loc = LatLng (marketDetailLatitude, marketDetailLongitude)
                     mMap.addMarker(MarkerOptions().position(loc).title(farm.marketName))
                 }
@@ -65,11 +82,30 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             val lastMarketLatLng = LatLng(lastMarketGCR.get(0).latitude, lastMarketGCR.get(0).longitude)
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastMarketLatLng,10f))
 
-            // TODO: this is a basic notification, would be nice to check for markets in the map and if the date is tomorrow, display it here
-            var myNotification = (activity as MainActivity?)!!.createNotification("Your market is tomorrow!", "Don't miss out on ${farmsData.get(farmsData.size - 1).marketName} tomorrow")
+            // Notification varies based on whether one or multiple markets are open for today
+            if (marketToday) {
+                if (marketsForToday > 1) {
+                    var myNotification = (activity as MainActivity?)!!.createNotification("Today's the day!", "Don't miss out on ${marketToVisit.marketName} and more open today.")
+                } else {
+                    var myNotification = (activity as MainActivity?)!!.createNotification("Today's the day!", "Don't miss out on ${marketToVisit.marketName} open today.")
+                }
+            }
         }
 
 
         mMap.uiSettings.isZoomControlsEnabled = true
+    }
+
+    private fun checkDate(today : String?, market: Markets) : Boolean {
+        return when (today) {
+            "sunday" -> market.sunday == true
+            "monday" -> market.monday == true
+            "tuesday" -> market.tuesday == true
+            "wednesday" -> market.wednesday == true
+            "thursday" -> market.thursday == true
+            "friday" -> market.friday == true
+            "saturday" -> market.saturday == true
+            else -> true
+        }
     }
 }
