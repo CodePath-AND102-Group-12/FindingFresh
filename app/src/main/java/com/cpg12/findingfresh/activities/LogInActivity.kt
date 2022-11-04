@@ -3,6 +3,9 @@ package com.cpg12.findingfresh.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -40,6 +43,20 @@ class LogInActivity : AppCompatActivity() {
         val passwordET = findViewById<EditText>(R.id.passwordInputET)
         val loginBtn = findViewById<Button>(R.id.loginButton)
         val registerBtn = findViewById<Button>(R.id.createAccountBtn)
+
+        // let enter on the keyboard act as an OnClick event for the loginBtn
+        passwordET.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                // if the event is a key down event on the enter button
+                if (event.action == KeyEvent.ACTION_DOWN &&
+                    keyCode == KeyEvent.KEYCODE_ENTER
+                ) {
+                    loginBtn.callOnClick()
+                    return true
+                }
+                return false
+            }
+        })
 
 
         loginBtn.setOnClickListener{
@@ -112,6 +129,12 @@ class LogInActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun hideSoftKeyboard() {
+        (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).apply {
+            hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+        }
+    }
 
 
 }
