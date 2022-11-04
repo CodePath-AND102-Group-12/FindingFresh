@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 import com.cpg12.findingfresh.FreshViewModel
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.databinding.ActivityMainBinding
@@ -89,9 +90,14 @@ class MainActivity : AppCompatActivity() {
 
     // Helper function to clean up fragment changes
     private fun replaceFragment(fragment: Fragment) {
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.content, fragment)
-        fragmentTransaction.commit()
+        supportFragmentManager.commit {
+            setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.slide_out
+            )
+            replace(R.id.content, fragment)
+            addToBackStack(null)
+        }
     }
 
     private fun createNotifChannel() {
