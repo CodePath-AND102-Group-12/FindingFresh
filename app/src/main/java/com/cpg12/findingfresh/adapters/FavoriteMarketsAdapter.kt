@@ -4,15 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.cpg12.findingfresh.GlideApp
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.database.Markets
 import com.cpg12.findingfresh.fragments.FavoriteMarketsFragment
-import com.google.firebase.storage.FirebaseStorage
-import java.util.*
 
 
 class FavoriteMarketsAdapter(private var marketList: ArrayList<Markets>,

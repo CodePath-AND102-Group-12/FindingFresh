@@ -16,17 +16,14 @@ import com.cpg12.findingfresh.adapters.ShoppingListAdapter
 import com.cpg12.findingfresh.database.ShoppingList
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.cpg12.findingfresh.objects.ShoppingListViewModel
 
 
 class ShoppingListFragment : Fragment() {
     private lateinit var shoppingRecyclerView: RecyclerView
     private lateinit var shoppingListAdapter: ShoppingListAdapter
-    private lateinit var shoppingArrayList: ArrayList<ShoppingList>
 
     private lateinit var shoppingViewModel: ShoppingListViewModel
 
@@ -115,9 +112,9 @@ class ShoppingListFragment : Fragment() {
         shoppingRecyclerView.layoutManager = GridLayoutManager(context, 1)
         shoppingListAdapter = ShoppingListAdapter()
         shoppingRecyclerView.adapter = shoppingListAdapter
-        shoppingViewModel = ViewModelProvider(this).get(ShoppingListViewModel::class.java)
+        shoppingViewModel = ViewModelProvider(this)[ShoppingListViewModel::class.java]
         shoppingViewModel.allShoppingList.observe(viewLifecycleOwner, Observer {
-            shoppingListAdapter.updateShoppinglist(it)
+            shoppingListAdapter.updateShoppingList(it)
         })
     }
 

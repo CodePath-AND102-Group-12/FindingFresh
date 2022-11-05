@@ -24,7 +24,6 @@ import com.google.firebase.ktx.Firebase
 class FavoriteMarketsFragment : Fragment(), FavoriteMarketsAdapter.ClickListener {
     private lateinit var favoriteMarketsRV: RecyclerView
     private lateinit var favoriteMarketsAdapter: FavoriteMarketsAdapter
-    private lateinit var favoriteMarketsList: ArrayList<Markets>
     private val viewModel: FreshViewModel by activityViewModels()
 
     // TODO: get rid of this TextView/myStringOfMarkets. On my emulator testing, if I remove the RV doesn't load
@@ -44,7 +43,7 @@ class FavoriteMarketsFragment : Fragment(), FavoriteMarketsAdapter.ClickListener
         val view = inflater.inflate(R.layout.fragment_favorite_markets, container, false)
 
         // TODO: get rid of this TextView/myStringOfMarkets. On my emulator testing, if I remove the RV doesn't load
-        textView = view.findViewById<TextView>(R.id.myOnlyTV)
+        textView = view.findViewById(R.id.myOnlyTV)
         myStringOfMarkets = StringBuilder()
 
         /** object for firebase authentication**/
@@ -68,7 +67,7 @@ class FavoriteMarketsFragment : Fragment(), FavoriteMarketsAdapter.ClickListener
 
             // first iterate through the user to determine what has been added as favorites, add to the favoritesAsString list
             for (document in documents) {
-                val name = document.data.get("name")
+                val name = document.data["name"]
                 favoritesAsString.add(name.toString())
             }
 
@@ -86,7 +85,7 @@ class FavoriteMarketsFragment : Fragment(), FavoriteMarketsAdapter.ClickListener
                             myStringOfMarkets.append("${favoriteFarm.marketName?.first()}: ${favoriteFarm.marketLocation?.first()}")
                         }
 
-                        textView.setText(myStringOfMarkets)
+                        textView.text = myStringOfMarkets
                     }
             }
 
@@ -96,7 +95,7 @@ class FavoriteMarketsFragment : Fragment(), FavoriteMarketsAdapter.ClickListener
                 this
             )
             val favoriteMarketsLayoutManager = LinearLayoutManager(context)
-            favoriteMarketsRV = view.findViewById<RecyclerView>(R.id.favoriteMarketsRV)
+            favoriteMarketsRV = view.findViewById(R.id.favoriteMarketsRV)
             favoriteMarketsRV.adapter = favoriteMarketsAdapter
             favoriteMarketsRV.layoutManager = favoriteMarketsLayoutManager
         }

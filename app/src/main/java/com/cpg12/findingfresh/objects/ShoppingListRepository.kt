@@ -13,10 +13,10 @@ class ShoppingListRepository {
     @Volatile private var INSTANCE : ShoppingListRepository?= null
 
     /** object for firebase authentication**/
-    val auth  = FirebaseAuth.getInstance()
+    private val auth  = FirebaseAuth.getInstance()
 
     /** References the unique id of the current user that is logged in**/
-    val uid = auth.currentUser?.uid
+    private val uid = auth.currentUser?.uid
 
     /** References the node to which market data is stored**/
    private val databaseReference = FirebaseDatabase.getInstance().getReference("Users")
@@ -42,6 +42,7 @@ class ShoppingListRepository {
                         }
                         shoppingList.postValue(_shoppingList)
                     }catch (e: Exception){
+                        //
                     }
 
                 }

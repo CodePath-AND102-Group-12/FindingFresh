@@ -1,9 +1,6 @@
 package com.cpg12.findingfresh.fragments
 
-import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -25,19 +19,11 @@ import com.cpg12.findingfresh.FreshViewModel
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.adapters.FeaturedMarketListingAdapter
 import com.cpg12.findingfresh.adapters.MarketListingAdapter
-import com.cpg12.findingfresh.database.MarketFetcher
 import com.cpg12.findingfresh.database.Markets
-import com.cpg12.findingfresh.objects.Market
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
 
 class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
     private lateinit var featuredMarketListingAdapter: FeaturedMarketListingAdapter
-    private lateinit var marketList: List<Markets>
     private lateinit var allMarketListingAdapter: MarketListingAdapter
 
     // to help prevent loading of spinner from crashing app, based on: https://stackoverflow.com/a/7660052
@@ -123,7 +109,7 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
                 if (spinnerCount < spinnerEvents) {
                     spinnerCount++
                 } else {
-                    var spinnerSelection = spinner.selectedItem.toString()
+                    val spinnerSelection = spinner.selectedItem.toString()
                     println("Spinner Selection: $spinnerSelection")
 
                     allMarketListingAdapter.filterSpinner().filter(spinnerSelection)

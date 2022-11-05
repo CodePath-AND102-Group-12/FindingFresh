@@ -144,25 +144,6 @@ class AddMarketActivity : AppCompatActivity() {
                 marketSaturday,
             )
 
-//            /** Creates the entity(child) into the node based on the market name**/
-//            databaseReference.child(marketName).setValue(newMarket).addOnCompleteListener {
-//                if (it.isSuccessful){
-//                    uploadImage()
-//                    hideProgressBar()
-//                    Toast.makeText(this@AddMarketActivity,"Market Listing Successful",Toast.LENGTH_LONG).show()
-//
-//
-//                    /**Go back to main screen**/
-//                    val intent = Intent(this, MainActivity::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                    this.startActivity(intent)
-//
-//                }else{
-//                    hideProgressBar()
-//                    Toast.makeText(this@AddMarketActivity,"Failed to list your market",Toast.LENGTH_SHORT).show()
-//                }
-//            }
-
             // Creates a document in Firestore with the given information
             val firestore = FirebaseFirestore.getInstance()
             val docRef = firestore.collection("farms")
@@ -177,7 +158,7 @@ class AddMarketActivity : AppCompatActivity() {
                     this.startActivity(intent)
                 }
                 .addOnFailureListener { e ->
-                    Log.w("NICS TAG", "Error adding document", e)
+                    Log.w("Finding Fresh Error", "Error adding document", e)
                 }
 
             /** temporary because no authentication implemented yet**/
@@ -224,12 +205,6 @@ class AddMarketActivity : AppCompatActivity() {
     }
 
     private fun uploadImage(marketDocumentId: String) {
-        val marketName = binding.marketNameET.text.toString()
-
-
-        // imageUri = Uri.parse("android.resource://$packageName/${R.drawable.fish}")
-        // storageReference = FirebaseStorage.getInstance().getReference("Markets/"+auth.currentUser?.uid)
-
         /** References where to store the image**/
         storageReference = FirebaseStorage.getInstance().getReference("Markets/$marketDocumentId")
 

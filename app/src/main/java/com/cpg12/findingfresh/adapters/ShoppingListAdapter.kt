@@ -3,7 +3,6 @@ package com.cpg12.findingfresh.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.R
@@ -30,7 +29,7 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
     /**
      * This lets us "bind" each Views in the ViewHolder to its' actual data!
      */
-    override fun onBindViewHolder(holder: ShoppingListAdapter.ShoppingListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ShoppingListViewHolder, position: Int) {
         val currentItem = shoppingList[position]
         holder.sListItem.text = currentItem.shoppingItem
 
@@ -42,7 +41,7 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
         return shoppingList.size
     }
 
-    fun updateShoppinglist(shoppingList: List<ShoppingList>){
+    fun updateShoppingList(shoppingList: List<ShoppingList>){
         this.shoppingList.clear()
         this.shoppingList.addAll(shoppingList)
         notifyDataSetChanged()

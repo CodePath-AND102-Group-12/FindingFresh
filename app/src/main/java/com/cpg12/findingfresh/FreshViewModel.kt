@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cpg12.findingfresh.database.Markets
-import com.cpg12.findingfresh.objects.Market
 
-class FreshViewModel(): ViewModel() {
+class FreshViewModel : ViewModel() {
 
     private var _id = MutableLiveData<Long>()
     val id: LiveData<Long> = _id

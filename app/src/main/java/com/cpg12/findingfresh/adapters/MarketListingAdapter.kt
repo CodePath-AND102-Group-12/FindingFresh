@@ -1,7 +1,6 @@
 package com.cpg12.findingfresh.adapters
 
 import android.content.Context
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.cpg12.findingfresh.GlideApp
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.database.Markets
 import com.google.firebase.storage.FirebaseStorage
-import java.util.*
 
 
 class MarketListingAdapter(private var marketList: ArrayList<Markets>,
@@ -75,8 +73,8 @@ class MarketListingAdapter(private var marketList: ArrayList<Markets>,
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
-                    filterList = copyMarketList as ArrayList<Markets>
+                filterList = if (charSearch.isEmpty()) {
+                    copyMarketList
                 } else {
                     val resultList = ArrayList<Markets>()
                     for (row in marketList) {
@@ -84,7 +82,7 @@ class MarketListingAdapter(private var marketList: ArrayList<Markets>,
                             resultList.add(row)
                         }
                     }
-                    filterList = resultList
+                    resultList
                 }
                 val filterResults = FilterResults()
                 filterResults.values = filterList
@@ -105,8 +103,8 @@ class MarketListingAdapter(private var marketList: ArrayList<Markets>,
             override fun performFiltering(p0: CharSequence?): FilterResults {
                 val charText = p0.toString()
                 println("Filter showing $charText")
-                if (charText.length == 0) {
-                    filterListDays = copyMarketList as ArrayList<Markets>
+                if (charText.isEmpty()) {
+                    filterListDays = copyMarketList
                 } else {
                     var resultList = ArrayList<Markets>()
 

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:text="Loading"
-        android:textSize="10dp"
+        android:textSize="11sp"
         app:layout_constraintBottom_toTopOf="@+id/animateProgress"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"

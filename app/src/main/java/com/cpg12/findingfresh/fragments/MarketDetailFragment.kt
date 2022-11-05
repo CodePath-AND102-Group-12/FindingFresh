@@ -2,7 +2,6 @@ package com.cpg12.findingfresh.fragments
 
 import android.content.Intent
 import android.location.Geocoder
-import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,7 +28,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
-class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
+class MarketDetailFragment : Fragment(), OnMapReadyCallback {
 
     //private lateinit var marketDetailDataArray: ArrayList<String>
     private lateinit var marketImage: ImageView
@@ -50,7 +49,7 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
         val marketHours: TextView = view.findViewById(R.id.marketHours)
         val marketDescription: TextView = view.findViewById(R.id.marketDescription)
         val marketImage: ImageView = view.findViewById(R.id.marketImage)
-        val favbtn = view.findViewById<Button>(R.id.favbtn)
+        val favBtn = view.findViewById<Button>(R.id.favBtn)
 
         // create market object based on the data array
         val marketDetail = viewModel.market.value
@@ -137,7 +136,7 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
             startActivity(mapIntent)
         }
 
-        favbtn.setOnClickListener {
+        favBtn.setOnClickListener {
             val user = FirebaseAuth.getInstance().currentUser
             if (user != null) {
                 val newFavorite: DocumentReference =
@@ -166,8 +165,8 @@ class MarketDetailFragment() : Fragment(), OnMapReadyCallback {
 
         val geocoder = Geocoder(view?.context)
         val geoCoderResults = geocoder.getFromLocationName(marketDetail?.marketLocation, 1)
-        val marketDetailLatitude = geoCoderResults.get(0).latitude
-        val marketDetailLongitude = geoCoderResults.get(0).longitude
+        val marketDetailLatitude = geoCoderResults[0].latitude
+        val marketDetailLongitude = geoCoderResults[0].longitude
 
         marketDetail?.marketLocation?.let {
             val loc = LatLng (marketDetailLatitude, marketDetailLongitude)

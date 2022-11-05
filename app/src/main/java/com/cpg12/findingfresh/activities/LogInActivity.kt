@@ -51,6 +51,7 @@ class LogInActivity : AppCompatActivity() {
                 if (event.action == KeyEvent.ACTION_DOWN &&
                     keyCode == KeyEvent.KEYCODE_ENTER
                 ) {
+                    hideSoftKeyboard()
                     loginBtn.callOnClick()
                     return true
                 }
@@ -116,7 +117,6 @@ class LogInActivity : AppCompatActivity() {
             }
         }
 
-        //TODO: Relocate "list market" button to better place
         val tempButton = findViewById<Button>(R.id.addMarketBtn)
         tempButton.setOnClickListener {
             val intent = Intent(this, AddMarketActivity::class.java)

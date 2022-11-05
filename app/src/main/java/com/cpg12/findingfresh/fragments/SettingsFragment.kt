@@ -23,27 +23,22 @@ class SettingsFragment : Fragment() {
     private val uID = FirebaseAuth.getInstance().currentUser!!.uid
     private val emailID = FirebaseAuth.getInstance().currentUser!!.email
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
 
-        val Email = view.findViewById(R.id.usernameTextView) as TextView
-        val UserID = view.findViewById(R.id.emailTextView) as TextView
+        val email = view.findViewById(R.id.usernameTextView) as TextView
+        val userId = view.findViewById(R.id.emailTextView) as TextView
 
-        /** Assigns the textviews to the email and UID**/
-        Email.text = uID
-        UserID.text = emailID.toString()
+        /** Assigns the TextViews to the email and UID**/
+        email.text = uID
+        userId.text = emailID.toString()
 
         /** Logout button signs out**/
-        var logout = view.findViewById<Button>(R.id.logoutBtn)
-        logout.setOnClickListener {
+        val logoutBtn = view.findViewById<Button>(R.id.logoutBtn)
+        logoutBtn.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(activity, LogInActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -59,13 +54,5 @@ class SettingsFragment : Fragment() {
         }
 
         return view
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
     }
 }

@@ -1,10 +1,12 @@
 package com.cpg12.findingfresh.fragments
 
 import android.location.Geocoder
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.activities.MainActivity
@@ -16,9 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
-import java.time.DayOfWeek
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -38,6 +38,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         return view
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -47,7 +48,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val docRef = firestore.collection("farms")
         val farmsData = ArrayList<Markets>()
 
-        // helpers to determine whether to issue notificaiton
+        // helpers to determine whether to issue notification
         var marketToday = false
         var marketsForToday = 0
         lateinit var marketToVisit : Markets
@@ -60,9 +61,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             for (document in documents) {
                 val farm = document.toObject(Markets::class.java)
                 farmsData.add(farm)
-                val geoCoderResults = geocoder.getFromLocationName(farm?.marketLocation, 1)
-                val marketDetailLatitude = geoCoderResults.get(0).latitude
-                val marketDetailLongitude = geoCoderResults.get(0).longitude
+                val geoCoderResults = geocoder.getFromLocationName(farm.marketLocation, 1)
+                val marketDetailLatitude = geoCoderResults[0].latitude
+                val marketDetailLongitude = geoCoderResults[0].longitude
 
                 if(checkDate(today, farm)) {
                     marketToVisit = farm
@@ -78,8 +79,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
             // use the last market added to determine the focus for the map
             val lastMarket = farmsData.first { it.marketName!!.startsWith("Marando")}
-            val lastMarketGCR = geocoder.getFromLocationName(lastMarket?.marketLocation, 1)
-            val lastMarketLatLng = LatLng(lastMarketGCR.get(0).latitude, lastMarketGCR.get(0).longitude)
+            val lastMarketGCR = geocoder.getFromLocationName(lastMarket.marketLocation, 1)
+            val lastMarketLatLng = LatLng(lastMarketGCR[0].latitude, lastMarketGCR[0].longitude)
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastMarketLatLng,11f))
 
             // Notification varies based on whether one or multiple markets are open for today
