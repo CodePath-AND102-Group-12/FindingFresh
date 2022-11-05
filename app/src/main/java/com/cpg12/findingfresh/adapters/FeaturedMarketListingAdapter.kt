@@ -1,58 +1,63 @@
 package com.cpg12.findingfresh.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.cpg12.findingfresh.GlideApp
 import com.cpg12.findingfresh.R
+import com.cpg12.findingfresh.database.Markets
 import com.cpg12.findingfresh.objects.Market
+import com.google.firebase.storage.FirebaseStorage
 
-private lateinit var featuredMarketsRVLayout: ConstraintLayout
-private lateinit var  marketName: TextView
-private lateinit var  marketAddress: TextView
-private lateinit var  marketPhone: TextView
 
-class FeaturedMarketListingAdapter(private val featuredMarketList: List<Market>): RecyclerView.Adapter<FeaturedMarketListingAdapter.ViewHolder>() {
+class FeaturedMarketListingAdapter(private var featuredMarketList: List<Markets>,
+                                   private val context: Context,
+                                   private val listener: MarketListingAdapter.ClickListener
+)
+    : RecyclerView.Adapter<FeaturedMarketListingAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        // TODO: Create member variables for any view that will be set
-        // as you render a row.
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each sub-view
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.featured_market_layout, parent,false)
+        return ViewHolder(view)
+    }
+
+    interface ClickListener {
+        fun gotoMarketDetail(position: Int, marketData: Markets)
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        var marketImage: ImageView
         init {
-            // TODO: Store each of the layout's views into
-            // the public final member variables created above
-            featuredMarketsRVLayout = itemView.findViewById(R.id.featuredMarketsRVLayout)
-            marketName = itemView.findViewById(R.id.marketName)
-            marketAddress = itemView.findViewById(R.id.marketAddress)
-            marketPhone = itemView.findViewById(R.id.marketPhone)
+            marketImage = itemView.findViewById(R.id.marketImage)
+            itemView.setOnClickListener(this)
+        }
+        override fun onClick(v: View?) {
+            val position : Int = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                val marketData = featuredMarketList[position]
+                listener.gotoMarketDetail(position, marketData)
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val context = parent.context
-        val inflater = LayoutInflater.from(context)
-
-        val  contactView = inflater.inflate(R.layout.featured_market_layout, parent, false)
-
-        return ViewHolder(contactView)
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val featuredMarket = featuredMarketList[position]
+        val market = featuredMarketList[position]
 
-        marketName.text = featuredMarket.name
-        marketAddress.text = featuredMarket.address
-        marketPhone.text = featuredMarket.phone
+        val storageReference = FirebaseStorage.getInstance().reference.child("Markets/${market.DocumentId}")
+        // val storageReference = FirebaseStorage.getInstance().getReference(market.marketName.toString())
+        storageReference.downloadUrl.addOnSuccessListener {
+            GlideApp.with(context).load(it).into(holder.marketImage)
+        }.addOnFailureListener {
 
-        featuredMarketsRVLayout.setOnClickListener {
-            Toast.makeText(it.context, "${featuredMarket.name} clicked", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -57,12 +57,10 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_market_listing, container, false)
-        val featuredMarketListLayoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val featuredMarketListRecyclerView =
-            view.findViewById<RecyclerView>(R.id.featuredMarketsRecyclerView)
 
         val firestore = FirebaseFirestore.getInstance()
+
+        // getting list of all markets
         val docRef = firestore.collection("farms")
         docRef.get().addOnSuccessListener { documents ->
             val farmsData = ArrayList<Markets>()
@@ -82,12 +80,25 @@ class MarketListingFragment : Fragment(), MarketListingAdapter.ClickListener {
             allMarketListRecyclerView.layoutManager = allMarketListLayoutManager
         }
 
-        /** still using marketfetcher for featured markets! **/
-        val marketList = MarketFetcher.getItems()
-
-        featuredMarketListingAdapter = FeaturedMarketListingAdapter(marketList.subList(0,marketList.size - 1))
-        featuredMarketListRecyclerView.adapter = featuredMarketListingAdapter
-        featuredMarketListRecyclerView.layoutManager = featuredMarketListLayoutManager
+        // getting list of featured markets
+        val docRefFeatured = firestore.collection("farms").whereEqualTo("featured", true)
+        docRefFeatured.get().addOnSuccessListener { documents ->
+            val featuredFarmsData = ArrayList<Markets>()
+            for (document in documents) {
+                val farm = document.toObject(Markets::class.java)
+                featuredFarmsData.add(farm)
+            }
+            println(featuredFarmsData[0].marketName)
+            featuredMarketListingAdapter = FeaturedMarketListingAdapter(
+                featuredFarmsData,
+                requireContext(),
+                this
+            )
+            val featuredMarketListLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            val featuredMarketListRecyclerView = view.findViewById<RecyclerView>(R.id.featuredMarketsRecyclerView)
+            featuredMarketListRecyclerView.adapter = featuredMarketListingAdapter
+            featuredMarketListRecyclerView.layoutManager = featuredMarketListLayoutManager
+        }
 
         // default spinner code based on official documentation: https://developer.android.com/develop/ui/views/components/spinner
         // will need to later implement an OnItemSelectedListener
