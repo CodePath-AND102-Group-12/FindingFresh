@@ -77,10 +77,43 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Logout"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/emailTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+            app:layout_constraintTop_toTopOf="@id/addMarketHeader"/>
+
+
+        <TextView
+            android:id="@+id/addMarketHeader"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Your Market!"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/logoutBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/addMarketText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Are you an organizer for a farmers market that isn't listed? \n\nWe would love to have you, add your market to Finding Fresh!"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addMarketHeader" />
+
+        <Button
+            android:id="@+id/addMarketBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Market"
+            app:layout_constraintTop_toBottomOf="@id/addMarketText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

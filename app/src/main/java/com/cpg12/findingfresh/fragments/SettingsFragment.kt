@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.cpg12.findingfresh.R
+import com.cpg12.findingfresh.activities.AddMarketActivity
 import com.cpg12.findingfresh.activities.LogInActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -49,6 +50,14 @@ class SettingsFragment : Fragment() {
             startActivity(intent)
             activity?.finish()
         }
+
+
+        val tempButton = view.findViewById<Button>(R.id.addMarketBtn)
+        tempButton.setOnClickListener {
+            val intent = Intent(requireContext(), AddMarketActivity::class.java)
+            this.startActivity(intent)
+        }
+
         return view
     }
 
