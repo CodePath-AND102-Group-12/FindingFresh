@@ -77,10 +77,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
 
             // use the last market added to determine the focus for the map
-            val lastMarket = farmsData[farmsData.size - 1]
+            val lastMarket = farmsData.first { it.marketName!!.startsWith("Marando")}
             val lastMarketGCR = geocoder.getFromLocationName(lastMarket?.marketLocation, 1)
             val lastMarketLatLng = LatLng(lastMarketGCR.get(0).latitude, lastMarketGCR.get(0).longitude)
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastMarketLatLng,10f))
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastMarketLatLng,11f))
 
             // Notification varies based on whether one or multiple markets are open for today
             if (marketToday) {
