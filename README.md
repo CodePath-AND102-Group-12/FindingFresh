@@ -2,11 +2,11 @@
 
 ## Table of Contents
 
-1. [Overview](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#overview)
-1. [Product Spec](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#product-spec)
-1. [Wireframes & Prototype](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#wireframes--prototype)
-1. [Milestone #3 Build Progress](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#milestone-3-build-progress)
-1. [Demo Day Video](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#demo-day-video)
+1. [Overview](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/README.md#overview)
+1. [Product Spec](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/README.md#product-spec)
+1. [Wireframes & Prototype](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/README.md#wireframes--prototype)
+1. [Milestone #3 Build Progress](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/README.md#milestone-3-build-progress)
+1. [Demo Day Video](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/README.md#demo-day-video)
 
 ## Overview
 
