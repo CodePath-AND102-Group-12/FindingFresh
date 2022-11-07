@@ -2,11 +2,11 @@
 
 ## Table of Contents
 
-1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes & Prototype](#Wireframes & Prototype)
-1. [Milestone #3 Build Progress](Milestone #3 Build Progress)
-1. [Demo Day Video](Demo Day Video)
+1. [Overview](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#overview)
+1. [Product Spec](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#product-spec)
+1. [Wireframes & Prototype](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#wireframes--prototype)
+1. [Milestone #3 Build Progress](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#milestone-3-build-progress)
+1. [Demo Day Video](https://github.com/CodePath-AND102-Group-12/FindingFresh/edit/master/README.md#demo-day-video)
 
 ## Overview
 
