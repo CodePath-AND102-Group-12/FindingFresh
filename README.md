@@ -1,4 +1,4 @@
-# Milestone 2 - Farmer's Market
+# Finding Fresh - Milestone #3
 
 ## Table of Contents
 
@@ -33,30 +33,23 @@ An app to find local Farmer's Markets, their vendors, and how to reach them.
 - [x] Google Maps API Integration to navigate user to local events or show on map
 - [x] Account and login capabilities
 - [x] User settings
-- [ ] Firebase item for vendors
-- [ ] Shopping/Grocery list
-- [ ] Filter by categories (plants, bakery, fruits, produce)
-- [ ] Calendar sort
-- [ ] List of saved farmers markets
-
-**Stretch Features**
-
-* Seller features - allow customer orders
-* Seller features - allow messaging with customers
-* Personalization
+- [x] Shopping/Grocery list
+- [x] Calendar sort
+- [x] List of user's favorite farmers markets
+- [x] Map showing nearby markets
+- [x] Users can add markets
 
 ### 2. Screen Archetypes
 
 #### Login Activity
 - Login Activity
     - As User
-    - As Market Participant
 
 
 #### Main Activity
-- Farmers Market Listing (User)
-    - sort by date
-    - sort by distance
+- Farmers Market Listing
+    - sort by date (list)
+    - sort by distance (map)
 - Farmers Market Map (User)
 - Calendar
     - Upcoming events
@@ -69,16 +62,8 @@ An app to find local Farmer's Markets, their vendors, and how to reach them.
     - Schedule
     - Contact information (email/phone)
     - List of vendors
-- Vendor Detail
-    - Farmers Markets attended/associated with
-    - Items for sale / prices
-    - Contact information
 - Settings
-    - Delete Account
-    - Modify Account information
-
-
-#### Stretch Activities (Organizer)
+    - Log out
 - Add a Farmers Market
 - Search bar
 
@@ -121,7 +106,7 @@ Refined wireframe after the Unit 7 session
 
 [Recorded with Kap for MacOS](https://getkap.co/)
 
-## Milestone 2 Build Progress
-![Video Walkthrough](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/Milestone_2.gif)
+## Milestone 3
+![Video Walkthrough](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/Milestone_3.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
