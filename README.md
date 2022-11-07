@@ -4,7 +4,9 @@
 
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
+1. [Wireframes & Prototype](#Wireframes & Prototype)
+1. [Milestone #3 Build Progress](Milestone #3 Build Progress)
+1. [Demo Day Video](Demo Day Video)
 
 ## Overview
 
@@ -90,23 +92,27 @@ An app to find local Farmer's Markets, their vendors, and how to reach them.
     - Add/remove items
 - Settings
 
-## Wireframes
+## Wireframes & Prototype
 
-Initial wireframe developed during Unit 7 session
+### Initial wireframe
+developed during Unit 7 session
 <img src="https://github.com/CodePath-AND102-Group-12/Temp/blob/master/Group%2012%20Initial%20Wireframe.png?raw=true" width="600">
 
-## Digital Wireframes & Mockups
+### Refined Digital Wireframes & Mockups
 Refined wireframe after the Unit 7 session
 <img src="https://github.com/CodePath-AND102-Group-12/Temp/blob/master/Group%2012%20Final%20Digital%20Wireframe.png?raw=true" width="600">
 
 [Also viewable on Figma](https://www.figma.com/community/file/1166378987628110358)
 
-## Interactive Prototype
+### Interactive Prototype
 <img src="https://github.com/CodePath-AND102-Group-12/Temp/blob/master/Group%2012%20Interactice%20Prototype.gif?raw=true" height="600">
 
 [Recorded with Kap for MacOS](https://getkap.co/)
 
-## Milestone 3
+## Milestone 3 Build Progress
 ![Video Walkthrough](https://github.com/CodePath-AND102-Group-12/FindingFresh/blob/master/Milestone_3.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Demo Day Video
+https://drive.google.com/file/d/13IWZGXnrJ74IFTZ1R2n4ESnmWY0UgZnF/view?usp=sharing
