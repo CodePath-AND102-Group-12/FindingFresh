@@ -115,4 +115,5 @@ Refined wireframe after the Unit 7 session
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Demo Day Video
-https://drive.google.com/file/d/13IWZGXnrJ74IFTZ1R2n4ESnmWY0UgZnF/view?usp=sharing
+
+[![Demo Day Video hosted on Youtube](http://img.youtube.com/vi/YyflcZbPNuc/0.jpg)](http://www.youtube.com/watch?v=YyflcZbPNuc "Finding Fresh - CodePath Demo")
