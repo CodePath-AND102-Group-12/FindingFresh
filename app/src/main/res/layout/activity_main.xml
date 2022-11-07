@@ -10,7 +10,6 @@
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="#d6f9e6"
             android:padding="15dp"
             app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"

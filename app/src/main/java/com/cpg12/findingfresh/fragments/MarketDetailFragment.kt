@@ -146,6 +146,8 @@ class MarketDetailFragment : Fragment(), OnMapReadyCallback {
                 val data = hashMapOf("name" to marketDetail?.marketName,
                     "address" to marketDetail?.marketLocation,)
                 newFavorite.set(data)
+                // TODO: implement remove logic
+                favBtn.setText("Remove from Favorites")
             }
             else {
                 Toast.makeText(

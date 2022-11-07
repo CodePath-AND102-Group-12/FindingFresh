@@ -42,6 +42,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        // cheating to move camera away from Africa right away
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(26.1187555,-80.176346),11f))
+
         val geocoder = Geocoder(view?.context)
 
         val firestore = FirebaseFirestore.getInstance()
