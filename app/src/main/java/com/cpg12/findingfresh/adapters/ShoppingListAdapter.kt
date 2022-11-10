@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.database.ShoppingList
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
@@ -16,14 +17,9 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
     private val shoppingList = ArrayList<ShoppingList>()
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.shopping_list_item, parent, false)
-
-        /** References the node to which market data is stored**/
-        val databaseReference = FirebaseDatabase.getInstance().getReference("Users")
-
         return ShoppingListViewHolder(itemView)
     }
 
@@ -35,6 +31,10 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
         val currentItem = shoppingList[position]
         holder.sListItem.text = currentItem.shoppingItem
 
+
+        if (currentItem.complete == true){
+            holder.sListItem.paintFlags = holder.sListItem.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        }
     }
 
 
@@ -54,18 +54,37 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
      * This class lets us refer to all the different View elements
      * (Yes, the same ones as in the XML layout files!)
      */
-    class ShoppingListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+   inner class ShoppingListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        /** object for firebase authentication**/
+        private val auth = FirebaseAuth.getInstance()
+
+        /** References the unique id of the current user that is logged in**/
+        private val uid = auth.currentUser?.uid
+
+        /** References the node to which market data is stored**/
+        private val databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+
+
         val sListItem : TextView = itemView.findViewById(R.id.ShoppingItemTV)
         init{
             itemView.setOnClickListener(this)
         }
 
         override fun onClick(v: View?) {
+
+
             // if the text is not having strike then set strike else vice versa
-            if (!sListItem.getPaint().isStrikeThruText()) {
-                sListItem.setPaintFlags(sListItem.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+            if (!sListItem.paint.isStrikeThruText) {
+                sListItem.paintFlags = sListItem.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                if (uid != null) {
+                    databaseReference.child(uid).child(sListItem.text.toString()).updateChildren(mapOf("complete" to true))
+                }
             } else {
-                sListItem.setPaintFlags(sListItem.getPaintFlags() and Paint.STRIKE_THRU_TEXT_FLAG.inv())
+                sListItem.paintFlags = sListItem.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                if (uid != null) {
+                    databaseReference.child(uid).child(sListItem.text.toString()).updateChildren(mapOf("complete" to false))
+                }
             }
         }
     }

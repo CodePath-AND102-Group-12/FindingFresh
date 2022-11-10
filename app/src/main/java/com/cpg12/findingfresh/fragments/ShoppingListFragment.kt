@@ -71,7 +71,7 @@ class ShoppingListFragment : Fragment() {
             val shoppingList = ShoppingList(itemToAdd)
 
             if (uid != null) {
-                databaseReference.child(uid).push().setValue(shoppingList).addOnCompleteListener {
+                databaseReference.child(uid).child(itemToAdd).setValue(shoppingList).addOnCompleteListener {
                     if (it.isSuccessful){
                         Toast.makeText(activity, "Shopping Item added", Toast.LENGTH_SHORT).show()
                         shoppingField.setText("")
