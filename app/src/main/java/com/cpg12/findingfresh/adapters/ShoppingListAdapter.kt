@@ -1,5 +1,6 @@
 package com.cpg12.findingfresh.adapters
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.R
 import com.cpg12.findingfresh.database.ShoppingList
 import com.google.firebase.database.FirebaseDatabase
+
 
 class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingListViewHolder>() {
 
@@ -54,8 +56,17 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
      */
     class ShoppingListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val sListItem : TextView = itemView.findViewById(R.id.ShoppingItemTV)
+        init{
+            itemView.setOnClickListener(this)
+        }
 
         override fun onClick(v: View?) {
+            // if the text is not having strike then set strike else vice versa
+            if (!sListItem.getPaint().isStrikeThruText()) {
+                sListItem.setPaintFlags(sListItem.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+            } else {
+                sListItem.setPaintFlags(sListItem.getPaintFlags() and Paint.STRIKE_THRU_TEXT_FLAG.inv())
+            }
         }
     }
 }
