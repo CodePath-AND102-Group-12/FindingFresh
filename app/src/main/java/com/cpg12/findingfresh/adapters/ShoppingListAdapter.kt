@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.R
@@ -34,6 +35,7 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
 
         if (currentItem.complete == true){
             holder.sListItem.paintFlags = holder.sListItem.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            holder.sListItemBox.isChecked = true
         }
     }
 
@@ -67,21 +69,31 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
 
 
         val sListItem : TextView = itemView.findViewById(R.id.ShoppingItemTV)
+        val sListItemBox : CheckBox = itemView.findViewById(R.id.checkBox)
+
         init{
             itemView.setOnClickListener(this)
+            sListItemBox.setOnClickListener {
+                strikeOrNot()
+            }
         }
 
         override fun onClick(v: View?) {
+            strikeOrNot()
+        }
 
+        fun strikeOrNot() {
 
             // if the text is not having strike then set strike else vice versa
             if (!sListItem.paint.isStrikeThruText) {
                 sListItem.paintFlags = sListItem.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                sListItemBox.isChecked = true
                 if (uid != null) {
                     databaseReference.child(uid).child(sListItem.text.toString()).updateChildren(mapOf("complete" to true))
                 }
             } else {
                 sListItem.paintFlags = sListItem.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                sListItemBox.isChecked = false
                 if (uid != null) {
                     databaseReference.child(uid).child(sListItem.text.toString()).updateChildren(mapOf("complete" to false))
                 }
