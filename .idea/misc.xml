@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh5/app/src/main/res/layout/dialog_nutrition.xml" value="0.22695035460992907" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh5/app/src/main/res/layout/dialog_wait.xml" value="0.22745694022289767" />
+        <entry key="..\:/Users/Home/AndroidStudioProjects/FindingFresh5/app/src/main/res/layout/shopping_list_item.xml" value="0.22745694022289767" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.189" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable/ic_launcher_background.xml" value="0.105" />
         <entry key="..\:/Users/coale/AndroidStudioProjects/FindingFresh/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.105" />

@@ -1,14 +1,19 @@
 package com.cpg12.findingfresh.adapters
 
+import android.app.Dialog
 import android.graphics.Paint
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cpg12.findingfresh.R
+import com.cpg12.findingfresh.activities.MainActivity
 import com.cpg12.findingfresh.database.ShoppingList
+import com.cpg12.findingfresh.fragments.ShoppingListDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -56,7 +61,7 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
      * This class lets us refer to all the different View elements
      * (Yes, the same ones as in the XML layout files!)
      */
-   inner class ShoppingListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+   inner class ShoppingListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
 
         /** object for firebase authentication**/
         private val auth = FirebaseAuth.getInstance()
@@ -72,10 +77,33 @@ class ShoppingListAdapter : RecyclerView.Adapter<ShoppingListAdapter.ShoppingLis
         val sListItemBox : CheckBox = itemView.findViewById(R.id.checkBox)
 
         init{
+            itemView.isLongClickable = true
+            itemView.isClickable = true
+
             itemView.setOnClickListener(this)
             sListItemBox.setOnClickListener {
                 strikeOrNot()
             }
+            itemView.setOnLongClickListener(this)
+        }
+
+        override fun onLongClick(v: View?): Boolean {
+            passToDialog()
+            return true
+        }
+
+        private fun passToDialog() {
+            val dialog = ShoppingListDialogFragment()
+            val bundle = Bundle()
+            val theFoodItem = sListItem.text.toString()
+            val activity =  itemView.context as? MainActivity
+
+            bundle.putString("TEXT",theFoodItem)
+            dialog.arguments = bundle
+            if (activity != null) {
+                dialog.show(activity.supportFragmentManager,"dialog")
+            }
+
         }
 
         override fun onClick(v: View?) {
