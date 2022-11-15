@@ -1,10 +1,13 @@
 package com.cpg12.findingfresh.fragments
 
+import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.DialogFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import com.cpg12.findingfresh.R
@@ -37,6 +40,26 @@ class ShoppingListDialogFragment: DialogFragment() {
 
         val caloriesTV = view.findViewById<TextView>(R.id.caloriesTV)
         val servingTV = view.findViewById<TextView>(R.id.servingTV)
+        val totalFatTV = view.findViewById<TextView>(R.id.totalFatTV)
+        val cholesterolTV = view.findViewById<TextView>(R.id.cholesterolTV)
+        val sodiumTV = view.findViewById<TextView>(R.id.sodiumTV)
+        val carbohydratesTV = view.findViewById<TextView>(R.id.carbohydratesTV)
+        val proteinTV = view.findViewById<TextView>(R.id.proteinTV)
+        val potassiumTV = view.findViewById<TextView>(R.id.potassiumTV)
+
+        val nutritionixIV = view.findViewById<ImageView>(R.id.nutritionixIV)
+
+        nutritionixIV.setOnClickListener {
+            val url = "https://www.nutritionix.com/business/api"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
+        }
+
+
+
+
+
 
         val client = OkHttpClient()
         val mediaType = "application/x-www-form-urlencoded".toMediaTypeOrNull()
@@ -82,29 +105,15 @@ class ShoppingListDialogFragment: DialogFragment() {
                     lifecycleScope.launch(Main){
                         caloriesTV.text = "Calories: ${foodCalories}"
                         servingTV.text = "Amount Per Serving (${foodQty} ${foodUnit} of ${foodName})"
+                        totalFatTV.text = "Total Fat: ${foodFats}g"
+                        cholesterolTV.text = "Cholesterol: ${foodCholesterol}mg"
+                        sodiumTV.text = "Sodium: ${foodSodium}mg"
+                        potassiumTV.text = "Potassium: ${foodPotassium}mg"
+                        carbohydratesTV.text = "Total Carbohydrates: ${foodCarbohydrates}g"
+                        proteinTV.text = "Protein: ${foodProteins}g"
                     }
-
-
-
                 }
-/*              val foodName = food.getString("food_name")
-                val foodQty = food.getString("serving_qty").toString()
-                val foodUnit = food.getString("serving_unit").toString()
-                val foodCalories = food.getString("nf_calories").toString()
-                val foodFats = food.getString("nf_total_fat").toString()
-                val foodCarbohydrates = food.getString("nf_total_carbohydrates").toString()
-                val foodProteins = food.getString("nf_protein").toString()
-                val foodSodium = food.getString("nf_sodium").toString()
-                val foodPotassium = food.getString("nf_potassium").toString()
-                val foodCholesterol = food.getString("nf_cholesterol").toString()
-
-                caloriesTV.text = foodName.toString()*/
-
-
             }
-
-
-
         })
 
 
