@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <View
         android:id="@+id/view10"
         android:layout_width="match_parent"
@@ -13,7 +12,6 @@
         android:layout_marginTop="8dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/proteinTV" />
 
@@ -23,7 +21,6 @@
         android:layout_height="1dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carbohydratesTV" />
 
@@ -41,7 +38,6 @@
         android:layout_height="1dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sodiumTV" />
 
@@ -60,7 +56,6 @@
         android:layout_height="1dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/totalFatTV" />
 
@@ -68,34 +63,30 @@
         android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="116dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="339dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/helveticabold"
         android:text="Nutrition Facts"
         android:textSize="48sp"
         app:fontFamily="@font/helveticabold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view"
-        android:layout_width="match_parent"
+        android:layout_width="800dp"
         android:layout_height="2dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="-10dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -103,18 +94,16 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:layout_marginTop="84dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/caloriesTV" />
 
     <TextView
         android:id="@+id/servingTV"
-        android:layout_width="386dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/helvetica"
         android:text="Amount Per Serving"
@@ -124,8 +113,8 @@
 
     <TextView
         android:id="@+id/caloriesTV"
-        android:layout_width="380dp"
-        android:layout_height="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/helveticabold"
         android:text="Calories"
@@ -135,27 +124,19 @@
         app:layout_constraintTop_toBottomOf="@+id/servingTV" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/totalFatTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:text="% Daily Value*"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-    <TextView
-        android:id="@+id/totalFatTV"
-        android:layout_width="237dp"
-        android:layout_height="19dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Total Fat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <TextView
         android:id="@+id/cholesterolTV"
-        android:layout_width="310dp"
-        android:layout_height="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Cholesterol"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,8 +144,8 @@
 
     <TextView
         android:id="@+id/sodiumTV"
-        android:layout_width="112dp"
-        android:layout_height="21dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Sodium"
         app:layout_constraintStart_toStartOf="parent"
@@ -172,8 +153,8 @@
 
     <TextView
         android:id="@+id/potassiumTV"
-        android:layout_width="157dp"
-        android:layout_height="19dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Potassium"
         app:layout_constraintStart_toStartOf="parent"
@@ -181,8 +162,8 @@
 
     <TextView
         android:id="@+id/carbohydratesTV"
-        android:layout_width="198dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Total Carbohydrates"
         app:layout_constraintStart_toStartOf="parent"
@@ -197,25 +178,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view8" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="350dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="8dp"
-        android:text="* Percent Daily Values are based on a 2000 calorie diet."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view10" />
-
     <ImageView
         android:id="@+id/nutritionixIV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:srcCompat="@drawable/poweredby_nutritionix_api" />
+        app:srcCompat="@drawable/poweredby_nutritionix_api"
+        app:layout_constraintTop_toBottomOf="@+id/proteinTV"
+        android:layout_marginTop="35dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
